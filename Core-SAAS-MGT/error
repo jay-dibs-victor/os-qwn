@@ -1,0 +1,47 @@
+1. Paystack split disbursement — does it hit the dashboard?
+
+No. The test key sk_test_<redacted> lacks Transfers & Subaccounts permissions. Every real API call fails and falls back to mock codes:
+
+Operation	Actual Result	Fallback
+POST /subaccount	401 → SUB_mock_{ts}	Mock only
+POST /split	401 → SPL_mock_{ts}	Mock only
+POST /transferrecipient	403 → RCP_mock_{ts}	Mock only
+POST /transfer	400 → TRF_mock_{ts}	Mock only
+POST /transaction/initialize	401 → throws (no fallback)	Rider can't even open checkout
+No real transactions appear on the Paystack dashboard. The mock prefixes (_mock_) are clearly distinguishable from real codes (SUB_xxxxxx). The platform's own bank account is hardcoded as 1234567890 / 044 (Access Bank) — placeholder data.
+
+Fix required: Enable Transfers & Subaccounts in the Paystack test dashboard for this key, or get a new test key with full permissions.
+
+2. Cash-trip debt collection background process
+
+It works, but only partially. The automation chain is:
+
+Cash trip → recordCommissionDebt() ✓ (writes debt, sets RESTRICTED if over threshold)
+  ↓
+checkDebt endpoint: blocks RESTRICTED drivers from new rides ✓
+  ↓
+AutoSettlementService.autoSettleDriverDebts() ← @Cron(EVERY_HOUR)
+     └── deducts outstanding debt from POSTED (pending payout) driver earnings ✓
+     └── updates GL: DR 2302 Driver Payable / CR 1403 Driver Debt Receivable ✓
+What's missing (no code exists):
+
+Wallet top-up trigger — loading a wallet does NOT auto-deduct outstanding debt
+Reminders — no SMS, email, push for unpaid debts
+Interest/penalties — no late fees or accruals on overdue debts
+Only POSTED earnings — skips PENDING (un-journalized) earnings
+So if a driver has debt and gets future earnings (from more trips), the hourly cron will deduct from them. But if a driver directly loads wallet cash, the debt sits untouched.
+
+3. Are real test money evenly distributed?
+
+No real money moves at all. The only working distribution path is wallet-pay, which moves internal ledger entries only:
+
+DR rider wallet (2101) 
+→ CR unsettled (2402)
+   → DR unsettled (2402)
+      → CR platform commission revenue (4201)
+      → CR driver earnings payable (2302) 
+         → DR driver earnings payable (2302)
+            → CR driver wallet (2101)
+This is double-entry accounting — correct on paper, but no real NGN leaves the system. For card payments (initiate → webhook → complete), every Paystack transfer call falls to mock because the key lacks permissions.
+
+To test with real money distribution: The user needs to upgrade the Paystack test key (enable Transfers/Subaccounts in dashboard), replace the hardcoded platform bank account with a real one, and use real test bank details for drivers.

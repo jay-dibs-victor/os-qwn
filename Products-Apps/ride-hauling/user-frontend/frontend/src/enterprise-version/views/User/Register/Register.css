@@ -1,0 +1,100 @@
+/* Page background (same feel as login) */
+.register-page {
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Card (just wider than login-card) */
+.register-card {
+    width: 100%;
+    max-width: 650px;
+    /* wider than login */
+    border-radius: 15px;
+    background: #fff;
+    padding: 30px;
+}
+
+/* Inputs (reuse login style but improve spacing) */
+.form-control {
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+/* Input group spacing */
+.input-group {
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.input-group:focus-within {
+    border-color: #FFB800;
+}
+
+/* Icons */
+.input-group-addon {
+    background: transparent;
+    border: none;
+    color: #6c757d;
+}
+
+/* Labels */
+label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+/* Button (reuse login theme) */
+.btn-primary {
+    background-color: #FFB800;
+    border: none;
+    color: #1a1a1a;
+}
+
+.btn-primary:hover {
+    background-color: #e6a700;
+}
+
+/* Button sizing */
+.btn-lg {
+    border-radius: 30px;
+    padding: 12px;
+    font-weight: 600;
+}
+
+/* Text */
+.text-muted-light {
+    color: #6c757d !important;
+}
+
+/* Links */
+.text-primary {
+    color: #FFB800 !important;
+}
+
+.text-primary:hover {
+    text-decoration: underline;
+}
+
+/* Spacing helpers (since you're using custom ones) */
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.m-b-30 {
+    margin-bottom: 30px;
+}
+
+.m-t-20 {
+    margin-top: 20px;
+}
+
+.m-t-40 {
+    margin-top: 40px;
+}
+
+.p-40 {
+    padding: 40px;
+}

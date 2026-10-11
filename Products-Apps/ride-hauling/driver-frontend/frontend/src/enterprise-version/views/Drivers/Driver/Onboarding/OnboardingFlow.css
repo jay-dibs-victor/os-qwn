@@ -1,0 +1,8 @@
+/* OnboardingFlow page root — ensures the wizard fills the viewport */
+.onboarding-flow-root {
+  min-height: 100dvh;
+  background: radial-gradient(ellipse at 60% 20%, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

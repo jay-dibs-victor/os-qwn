@@ -1,0 +1,14 @@
+{
+    "web":
+    {
+        "client_id":"PUT_YOURS",
+        "project_id":"Queensdevproja123",
+        "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+        "token_uri":"https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret":"PUT_YOURS",
+        "redirect_uris":["http://localhost:12000/api/v1/auth/google/callback"],
+        "javascript_origins":["http://localhost:4000"]
+
+        }
+}

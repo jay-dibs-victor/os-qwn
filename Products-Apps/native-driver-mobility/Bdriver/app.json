@@ -1,0 +1,104 @@
+{
+  "expo": {
+    "name": "Bdriver",
+    "slug": "Bdriver",
+    "version": "1.0.0",
+    "scheme": "Bdriver",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.queensos.bdriver",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Bdriver needs your location to find rides near you and navigate to pickups.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Bdriver needs your location to find rides near you and navigate to pickups, even when the app is in the background.",
+        "NSLocationAlwaysUsageDescription": "Bdriver needs your location to find rides near you and navigate to pickups, even when the app is in the background.",
+        "NSMicrophoneUsageDescription": "Bdriver may use the microphone for in-app voice messages and support calls.",
+        "NSCameraUsageDescription": "Bdriver uses the camera to capture vehicle and document photos for onboarding.",
+        "NSPhotoLibraryUsageDescription": "Bdriver needs photo library access so you can attach existing images to onboarding documents.",
+        "NSPhotoLibraryAddUsageDescription": "Bdriver saves trip receipts and screenshots to your photo library.",
+        "UIBackgroundModes": [
+          "location",
+          "fetch",
+          "remote-notification"
+        ],
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "associatedDomains": [
+        "applinks:accounts.google.com"
+      ]
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "softwareKeyboardLayoutMode": "pan",
+      "predictiveBackGestureEnabled": false,
+      "package": "com.queensos.bdriver",
+      "usesCleartextTraffic": true,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "FOREGROUND_SERVICE_DATA_SYNC",
+        "POST_NOTIFICATIONS",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "WAKE_LOCK",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_MEDIA_IMAGES",
+        "READ_MEDIA_VIDEO"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "*.google.com",
+              "pathPrefix": "/oauth"
+            },
+            {
+              "scheme": "https",
+              "host": "queensos.app",
+              "pathPrefix": "/driver"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-web-browser",
+      "expo-location",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.PUT_YOURS"
+        }
+      ]
+    ]
+  }
+}

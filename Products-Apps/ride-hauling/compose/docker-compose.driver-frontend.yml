@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  driver-frontend:
+    build:
+      context: ../driver-frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:12000/api/v1}
+    ports:
+      - "${DRIVER_FRONTEND_PORT:-4004}:4004"
+    environment:
+      PORT: ${DRIVER_FRONTEND_PORT:-4004}

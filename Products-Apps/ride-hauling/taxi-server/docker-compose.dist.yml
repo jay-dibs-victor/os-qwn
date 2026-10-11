@@ -1,0 +1,50 @@
+version: '3.8'
+
+# 🌐 Distributed Microservices Orchestration
+# Use this file to deploy individual services to specific instances.
+# Run with: docker-compose -f docker-compose.dist.yml up <service-name>
+
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+    environment:
+      - PORT=12000
+      - AUTH_SERVICE_URL=${AUTH_SERVICE_URL}
+      - RIDE_SERVICE_URL=${RIDE_SERVICE_URL}
+      - FLIGHT_INVENTORY_URL=${FLIGHT_INVENTORY_URL}
+      - FLIGHT_BOOKING_URL=${FLIGHT_BOOKING_URL}
+      - SHIPPING_SERVICE_URL=${SHIPPING_SERVICE_URL}
+      - AI_OS_URL=${AI_OS_URL}
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.auth
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - RABBITMQ_URL=${RABBITMQ_URL}
+      - REDIS_URL=${REDIS_URL}
+      - JWT_SECRET=${JWT_SECRET}
+
+  ride-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.ride
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - RABBITMQ_URL=${RABBITMQ_URL}
+      - REDIS_URL=${REDIS_URL}
+
+  ai-os:
+    build:
+      context: ./server/operating-system
+      dockerfile: Dockerfile
+    environment:
+      - LLM_PROVIDER=${LLM_PROVIDER}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+      - RABBITMQ_URL=${RABBITMQ_URL}
+      - TEMPORAL_ADDRESS=${TEMPORAL_ADDRESS}
+      - LIVEKIT_HOST=${LIVEKIT_HOST}
+      - GATEWAY_URL=${GATEWAY_URL}

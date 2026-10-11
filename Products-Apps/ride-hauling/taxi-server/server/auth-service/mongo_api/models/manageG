@@ -1,0 +1,50 @@
+'use strict';
+const Promise = require('bluebird');
+import mongoose from  'mongoose';
+
+let AWSSettingSchema = new mongoose.Schema({
+        id :{
+          type: Number,
+         
+          default: 0
+        },
+        api_mode:{
+          type: String,
+          
+        },
+        test_secret_key:{
+          type:String
+        },
+        test_public_key:{
+          type:String
+        },
+        live_secret_key:{
+          type:String
+        },
+        live_public_key:{
+          type:String
+        }
+        
+        
+      },{
+        collection: 'aws_collections',
+        timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
+});
+
+
+AWSSettingSchema.set('toJSON', {getters: true, virtuals: true});
+
+AWSSettingSchema.statics = {
+             
+             // Add Intervention
+            addSettings(user, callback)  {
+              return this.create(user, callback);
+            },
+
+     
+};
+     
+
+module.exports = mongoose.model('AWSSettingModel', AWSSettingSchema);
+
+

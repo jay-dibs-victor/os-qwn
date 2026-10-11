@@ -1,0 +1,32 @@
+.mechanic-request-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.file-upload-wrapper {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.file-upload-wrapper:hover {
+    background: #ffffff;
+    border-color: var(--color-primary, #FFB800) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.support-sidebar-wrapper img {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.repair-steps .step-number {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+@media (max-width: 991px) {
+    .support-sidebar-wrapper {
+        margin-left: 0 !important;
+        margin-top: 40px;
+    }
+}

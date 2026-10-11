@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  flight-notification-service:
+    build:
+      context: ..
+      dockerfile: Dockerfile.flight-notification
+    environment:
+      PORT: ${FLIGHT_NOTIFICATION_PORT:-12005}
+      NODE_ENV: ${NODE_ENV:-DEVELOPMENT}
+    ports:
+      - "${FLIGHT_NOTIFICATION_PORT:-12005}:${FLIGHT_NOTIFICATION_PORT:-12005}"
+    networks:
+      - taxi-net
+
+networks:
+  taxi-net:
+    external: true
+    name: taxi-net

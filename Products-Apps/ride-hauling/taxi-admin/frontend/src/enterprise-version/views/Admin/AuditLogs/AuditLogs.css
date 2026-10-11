@@ -1,0 +1,44 @@
+/* Audit Logs — Compliance & Security Styles */
+
+.audit-logs .card {
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow);
+}
+
+.audit-logs .table-hover tbody tr:hover {
+  background-color: rgba(30, 64, 175, 0.02);
+}
+
+.badge-audit {
+  padding: 0.5em 1em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+}
+
+.ip-badge {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.log-description {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+.log-description:hover {
+  white-space: normal;
+  background: white;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+}

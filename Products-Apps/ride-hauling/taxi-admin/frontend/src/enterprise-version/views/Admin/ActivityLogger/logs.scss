@@ -1,0 +1,112 @@
+.activity-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display:table;
+  
+  li{
+    display: table-row;
+    margin-top: 30px;
+    position: relative;
+    
+    .profile{
+      text-align: center;
+      display: table-cell;
+      float: none;
+      padding: 0;
+      margin: 0;
+      background: url("http://img42.com/a5yju+") repeat-y center center;
+      img{
+        width: 80%;
+        max-width: 68px;
+        border-radius: 50%;
+      }
+    }
+    &:last-child{
+      .profile{
+        background: transparent;
+      }
+    }
+    .activity-content 
+    {
+      display: table-cell;
+      float: none;
+      padding: 0;
+      margin: 0;
+      .inner{
+        margin-bottom: 30px;
+        padding: 10px;
+        background: #FFF;
+        border-radius: 3px;
+        .date{
+          float: right;
+          color: #999;
+        }
+        .name{
+          color: #0074D9;
+          font-weight: bold;
+        }
+        .content{
+          padding-top: 15px;
+        }
+      }
+    }
+  }
+} 
+
+
+
+
+
+
+
+
+.result {
+    background-color: #6a93d4;
+    width: 100%;
+    padding: 1em;
+    margin: 0.5em;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    border: solid 2px honeydew;
+}
+
+#showMoreTrigger:hover {
+    background-color: honeydew;
+    border: solid 2px #6a93d4;
+    color: #052d6e
+}
+
+#showMoreTrigger {
+    width: 100%;
+    padding: 1em;
+    background-color: #6a93d4;
+    display: inline-block;
+    border: solid 2px white;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    color: honeydew;
+}
+
+.form-box {
+    width: 20%;
+    text-align: center;
+    margin: auto; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

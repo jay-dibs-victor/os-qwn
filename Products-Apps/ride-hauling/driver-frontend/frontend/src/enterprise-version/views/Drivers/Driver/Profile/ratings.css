@@ -1,0 +1,31 @@
+.ratings-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.overall-score {
+    position: relative;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.progress-track {
+    background: #f1f5f9 !important;
+}
+
+.review-card {
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    background: #fff !important;
+    border-color: var(--color-primary) !important;
+}
+
+@media (max-width: 991px) {
+    .ratings-page-container {
+        padding: 20px;
+    }
+}

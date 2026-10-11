@@ -1,0 +1,24 @@
+{
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./server",
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["./server/shared/*"]
+    },
+    "strict": false,
+    "esModuleInterop": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
+  },
+  "include": ["server/**/*.ts", "server/**/*.tsx"],
+  "exclude": ["node_modules", "buildfolder", "**/*/cars_info.ts"]
+}

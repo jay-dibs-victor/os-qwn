@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  flight-inventory-service:
+    build:
+      context: ..
+      dockerfile: Dockerfile.flight-inventory
+    environment:
+      PORT: ${FLIGHT_INVENTORY_PORT:-12003}
+      DB_URL: ${FLIGHT_INVENTORY_DB_URL:-postgres://admin:admin@postgres:5432/flight_service}
+      NODE_ENV: ${NODE_ENV:-DEVELOPMENT}
+    ports:
+      - "${FLIGHT_INVENTORY_PORT:-12003}:${FLIGHT_INVENTORY_PORT:-12003}"
+    networks:
+      - taxi-net
+
+networks:
+  taxi-net:
+    external: true
+    name: taxi-net

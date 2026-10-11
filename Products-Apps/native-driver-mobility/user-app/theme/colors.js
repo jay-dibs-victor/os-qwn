@@ -1,0 +1,51 @@
+export const colors = {
+  bg: {
+    deep:      '#070B1A',
+    base:      '#0C1024',
+    surface:   '#141828',
+    elevated:  '#1C2236',
+    glass:     'rgba(20,24,40,0.85)',
+    glassLight:'rgba(255,255,255,0.06)',
+  },
+  gold: {
+    pure:    '#FFD060',
+    bright:  '#FFC107',
+    dark:    '#B8860B',
+    glow:    'rgba(255,208,96,0.18)',
+    glowStrong: 'rgba(255,208,96,0.30)',
+    text:    '#FFD060',
+  },
+  text: {
+    primary:   '#F0F4FF',
+    secondary: '#8892AA',
+    muted:     '#4A5270',
+    gold:      '#FFD060',
+    onGold:    '#0C1024',
+  },
+  border: {
+    subtle:  'rgba(255,255,255,0.07)',
+    medium:  'rgba(255,255,255,0.12)',
+    gold:    'rgba(255,208,96,0.35)',
+    goldBright: 'rgba(255,208,96,0.7)',
+  },
+  white:       '#FFFFFF',
+  black:       '#000000',
+  success:     '#00D46A',
+  error:       '#FF4757',
+  warning:     '#F59E0B',
+  info:        '#3B82F6',
+  online:      '#00D46A',
+  offline:     '#FF4757',
+  transparent: 'transparent',
+  shadow:      'rgba(0,0,0,0.6)',
+};
+
+export const gradients = {
+  bg:           ['#070B1A', '#0C1024', '#141828'],
+  gold:         ['#FFD060', '#FFA800'],
+  goldReverse:  ['#FFA800', '#FFD060'],
+  greenGlow:    ['#00D46A', '#00B359'],
+  redGlow:      ['#FF4757', '#CC1C2B'],
+  cardGlass:    ['rgba(28,34,54,0.95)', 'rgba(20,24,40,0.98)'],
+  drawerBg:     ['#0C1024', '#141828'],
+};

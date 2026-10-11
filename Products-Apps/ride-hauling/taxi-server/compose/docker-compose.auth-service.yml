@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build:
+      context: ..
+      dockerfile: Dockerfile.auth
+    environment:
+      PORT: ${AUTH_PORT:-12001}
+      MONGO_URI: ${MONGO_URI:-mongodb://mongodb:27017/taxi_service}
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://rabbitmq:5672}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      JWT_SECRET: ${JWT_SECRET:-dev_secret}
+      SECRET: ${SECRET:-dev_secret}
+    ports:
+      - "${AUTH_PORT:-12001}:${AUTH_PORT:-12001}"
+    networks:
+      - taxi-net
+
+networks:
+  taxi-net:
+    external: true
+    name: taxi-net

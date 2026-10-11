@@ -1,0 +1,351 @@
+/* ===== BASE ===== */
+.landing-page {
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+}
+
+/* SECTION BASE */
+.section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.section-tag {
+    color: #FFB800;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* ABOUT */
+.about-img {
+    max-width: 100%;
+    border-radius: 16px;
+}
+
+/* DOWNLOAD */
+.download-section {
+    background: #111;
+    color: #fff;
+    padding: 60px 0;
+}
+
+.store-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.store-box {
+    background: #222;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.qr {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    margin-top: 10px;
+}
+
+/* DEMO GRID */
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.demo-img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* BENEFITS */
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 184, 0, 0.1);
+    color: #FFB800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+
+/* ===== HERO ===== */
+.hero-section {
+    background: #fff;
+    padding: 80px 0 60px;
+}
+
+.hero-title {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.hero-highlight {
+    color: #FFB800;
+}
+
+.hero-subtext {
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* Booking Card (Uber style) */
+.booking-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.booking-card label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+/* Inputs */
+.input-group {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 6px 10px;
+    margin-bottom: 12px;
+    background: #fff;
+}
+
+.input-group:focus-within {
+    border-color: #FFB800;
+}
+
+.form-control {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Button */
+.btn-primary {
+    background-color: #000;
+    color: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: #222;
+}
+
+/* ===== SUGGESTIONS ===== */
+.suggestions {
+    margin-top: 40px;
+}
+
+.suggestion-card {
+    background: #f8f9fa;
+    border-radius: 14px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.suggestion-card:hover {
+    background: #f1f3f5;
+}
+
+/* ===== BENEFITS ===== */
+.benefits-section {
+    background: #fff;
+}
+
+.benefit-card {
+    padding: 25px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid #eee;
+    transition: 0.3s;
+    height: 100%;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 184, 0, 0.1);
+    color: #FFB800;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* ===== APP SECTION ===== */
+.app-showcase {
+    background: #111;
+    color: #fff;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.feature-item i {
+    color: #FFB800;
+    margin-right: 10px;
+}
+
+/* ===== TESTIMONIAL ===== */
+.testimonial-card {
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.testimonial-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== UTIL ===== */
+.text-yellow {
+    color: #FFB800;
+}
+
+.badge-yellow {
+    background: #FFB800;
+    color: #000;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 30px;
+    }
+
+    .booking-card {
+        margin-top: 30px;
+    }
+}
+
+
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1000;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 800;
+}
+
+.nav-links span {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero-section {
+    padding: 80px 0;
+}
+
+.hero-title {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.hero-subtext {
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+/* BOOKING */
+.booking-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+/* RIDE TYPES */
+.ride-types {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.ride-option {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    background: #eee;
+    cursor: pointer;
+}
+
+.ride-option.active {
+    background: #FFB800;
+    color: #000;
+    font-weight: 600;
+}
+
+/* PRICE */
+.price-box {
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* BUTTON */
+.btn-primary {
+    background: #000;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #222;
+}
+
+/* IMAGE */
+.hero-image {
+    max-width: 400px;
+    border-radius: 16px;
+}

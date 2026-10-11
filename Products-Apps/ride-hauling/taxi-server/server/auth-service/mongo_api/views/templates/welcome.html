@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Queens OS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a1f3a 0%, #0f1428 100%);
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 184, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFB800;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .logo-subtitle {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            font-size: 24px;
+            font-weight: 600;
+            color: #FFB800;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 14px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .feature {
+            background: rgba(255, 184, 0, 0.05);
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #FFB800;
+            margin-bottom: 5px;
+        }
+        
+        .feature-desc {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .button-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFB800 0%, #FFA500 100%);
+            color: #000;
+            padding: 14px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 184, 0, 0.3);
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 184, 0, 0.4);
+        }
+        
+        .info-box {
+            background: rgba(100, 200, 255, 0.08);
+            border-left: 4px solid #64C8FF;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #b0b0b0;
+        }
+        
+        .info-box strong {
+            color: #64C8FF;
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 184, 0, 0.1);
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .footer-link {
+            color: #FFB800;
+            text-decoration: none;
+        }
+        
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+        
+        .divider {
+            height: 1px;
+            background: rgba(255, 184, 0, 0.1);
+            margin: 20px 0;
+        }
+        
+        .social-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 184, 0, 0.1);
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            border-radius: 50%;
+            line-height: 36px;
+            color: #FFB800;
+            text-decoration: none;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 184, 0, 0.2);
+            border-color: #FFB800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">👑 QUEENS OS</div>
+            <div class="logo-subtitle">Premium Mobility Platform</div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <div class="greeting">Welcome to Queens OS, {{username}}!</div>
+            
+            <div class="message">
+                Your account has been successfully verified and activated. You're now part of the Queens OS community. Get ready to experience premium mobility like never before.
+            </div>
+            
+            <!-- Features Grid -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🚗</div>
+                    <div class="feature-title">Premium Rides</div>
+                    <div class="feature-desc">Book luxury rides instantly</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Rewards</div>
+                    <div class="feature-desc">Earn coins on every trip</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-title">Safe & Secure</div>
+                    <div class="feature-desc">24/7 safety features</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⭐</div>
+                    <div class="feature-title">VIP Benefits</div>
+                    <div class="feature-desc">Exclusive member perks</div>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="button-section">
+                <a href="https://queens-os.app/dashboard" class="button">Go to Dashboard</a>
+            </div>
+            
+            <!-- Info Box -->
+            <div class="info-box">
+                <strong>Getting Started:</strong> Complete your profile, add a payment method, and you're ready to book your first premium ride. Check out our help center for tips and tricks.
+            </div>
+            
+            <!-- Additional Message -->
+            <div class="message" style="margin-top: 30px; font-size: 13px; color: #888;">
+                If you have any questions or need assistance, our support team is available 24/7. Visit our help center or contact us directly.
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div style="margin-bottom: 15px;">
+                <strong style="color: #FFB800;">Queens OS</strong> — Premium Mobility Platform
+            </div>
+            <div class="divider"></div>
+            <div style="margin: 15px 0;">
+                <a href="https://queens-os.app" class="footer-link">Website</a> • 
+                <a href="https://queens-os.app/help" class="footer-link">Help Center</a> • 
+                <a href="https://queens-os.app/contact" class="footer-link">Contact Us</a>
+            </div>
+            <div style="margin-top: 15px; color: #666;">
+                © 2026 Queens OS. All rights reserved.<br>
+                This is an automated message. Please do not reply to this email.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

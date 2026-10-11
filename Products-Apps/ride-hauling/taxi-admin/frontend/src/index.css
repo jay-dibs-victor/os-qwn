@@ -1,0 +1,257 @@
+/* 
+ * GoomTaxi Admin — Premium Design System
+ * Modern High-Fidelity UI with Glassmorphism & Micro-interactions
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Core Colors */
+  --color-primary: #1e40af;
+  --color-primary-light: #3b82f6;
+  --color-secondary: #6366f1;
+  --color-dark: #0f172a;
+  --color-dark-soft: #1e293b;
+  --color-light: #f8fafc;
+  --color-white: #ffffff;
+  
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #0ea5e9;
+
+  /* Surfaces & Glass */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  
+  /* Layout */
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px;
+  --header-height: 70px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #f1f5f9;
+  color: var(--color-dark-soft);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   ADMIN LAYOUT
+   ───────────────────────────────────────────────────────────────── */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.admin-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Fix flex overflow */
+}
+
+.admin-layout.sidebar-collapsed .admin-main {
+  margin-left: 0;
+}
+
+@media (max-width: 1024px) {
+  .admin-main {
+    margin-left: 0 !important;
+  }
+}
+
+.admin-content {
+  padding: 2rem;
+  flex: 1;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   GLASSMORPHISM & UTILITIES
+   ───────────────────────────────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.card-premium {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.card-premium:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Grid & Layout Fixes (Replaces broken Bootstrap row/cols) */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-dark);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-overline {
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   DASHBOARD SPECIFIC
+   ───────────────────────────────────────────────────────────────── */
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, var(--color-primary-light) 0%, transparent 70%);
+  opacity: 0.05;
+  transform: translate(30%, -30%);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   TABLES
+   ───────────────────────────────────────────────────────────────── */
+.table-container {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+  background: var(--color-white);
+}
+
+.table-custom {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-custom th {
+  background: #f8fafc;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table-custom td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+}
+
+.table-custom tr:last-child td {
+  border-bottom: none;
+}
+
+.table-custom tr:hover td {
+  background: #f8fafc;
+}
+
+/* Badges */
+.badge-premium {
+  padding: 0.35em 0.8em;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-success { background: #d1fae5; color: #065f46; }
+.badge-warning { background: #fef3c7; color: #92400e; }
+.badge-danger { background: #fee2e2; color: #991b1b; }
+.badge-info { background: #e0f2fe; color: #075985; }
+
+/* ─────────────────────────────────────────────────────────────────
+   MODALS & OVERLAYS
+   ───────────────────────────────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Sidebar Overlay for Mobile */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 998;
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .admin-layout.sidebar-open .sidebar-overlay {
+    display: block;
+  }
+}

@@ -1,0 +1,41 @@
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    background: #fff;
+}
+
+.login-btn {
+    border-radius: 30px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.btn-outline-dark:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #FFB800
+}
+
+
+.btn-primary {
+    background-color: #FFB800
+}
+
+.divider {
+    width: 100%;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+}

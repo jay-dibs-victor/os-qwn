@@ -1,0 +1,179 @@
+/* 
+ * GoomTaxi Admin — Component Library Styles
+ * Specialized tokens for reusable UI elements
+ */
+
+/* ─────────────────────────────────────────────────────────────────
+   BUTTONS
+   ───────────────────────────────────────────────────────────────── */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  border: none;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-dark-soft);
+}
+
+.btn-ghost:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.btn-action {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: var(--transition-smooth);
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.btn-action:hover {
+  background: #e2e8f0;
+  color: var(--color-dark);
+  transform: scale(1.1);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   INPUTS & FORMS
+   ───────────────────────────────────────────────────────────────── */
+.input-premium {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #e2e8f0;
+  font-family: inherit;
+  font-size: 0.875rem;
+  transition: var(--transition-smooth);
+  background: var(--color-white);
+}
+
+.input-premium:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.search-field {
+  position: relative;
+}
+
+.search-field i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.search-field input {
+  padding-left: 2.75rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   AVATARS & ICONS
+   ───────────────────────────────────────────────────────────────── */
+.avatar-rounded {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: 2px solid white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   TABS
+   ───────────────────────────────────────────────────────────────── */
+.tab-scroller {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.tab-item {
+  padding: 1rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.tab-item.active {
+  color: var(--color-primary);
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   SIDEBAR NAV ELEMENTS
+   ───────────────────────────────────────────────────────────────── */
+.nav-item-premium {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  color: #475569;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: var(--transition-smooth);
+}
+
+.nav-item-premium:hover {
+  background: rgba(30, 64, 175, 0.05);
+  color: var(--color-primary);
+}
+
+.nav-item-premium.active {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+}
+
+.nav-item-premium i {
+  font-size: 1.1rem;
+}

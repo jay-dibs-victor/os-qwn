@@ -1,0 +1,30 @@
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    background: #fff;
+}
+
+.login-btn {
+    border-radius: 30px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.btn-outline-dark:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #FFB800
+}
+
+
+.btn-primary {
+    background-color: #FFB800
+}

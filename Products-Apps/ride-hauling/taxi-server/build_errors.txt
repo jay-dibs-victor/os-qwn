@@ -1,0 +1,56 @@
+
+> GoomLogistics-dev-Proj-repo@1.0.0 build
+> tsc
+
+server/auth-service/mongo_api/controllers/cars_controller.ts(2,29): error TS2307: Cannot find module '../services/cars_services' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/driver_controller.ts(2,31): error TS2307: Cannot find module '../services/driver_services' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/driver_controller.ts(3,38): error TS2307: Cannot find module '../services/sos_service_drivers' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/ewallet.controller.ts(6,33): error TS2307: Cannot find module '../services/paymentService' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/ewallet.controller.ts(7,36): error TS2307: Cannot find module '../services/withdrawalService' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/ewallet.controller.ts(8,34): error TS2307: Cannot find module '../services/transferService' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/ewallet.controller.ts(10,10): error TS2614: Module '"../App"' has no exported member 'getIO'. Did you mean to use 'import getIO from "../App"' instead?
+server/auth-service/mongo_api/controllers/ewallet.controller.ts(11,33): error TS2307: Cannot find module '../services/location_service' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/ewallet.controller.ts(12,38): error TS2307: Cannot find module '../services/payment_router_service' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/ewallet.controller.ts(13,33): error TS2307: Cannot find module '../services/currency_service' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/faqs_controller.ts(2,29): error TS2307: Cannot find module '../services/faqs_service' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/gamification_controller.ts(2,37): error TS2307: Cannot find module '../services/gamification_service' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/mech_controller.ts(2,29): error TS2307: Cannot find module '../services/mech_service' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/onboarding_controller.ts(2,35): error TS2307: Cannot find module '../services/onboarding_service' or its corresponding type declarations.
+server/auth-service/mongo_api/controllers/ride_controller.ts(2,29): error TS2307: Cannot find module '../services/ride_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/client-reset.ts(1,7): error TS2451: Cannot redeclare block-scoped variable 'linkUrl'.
+server/auth-service/mongo_api/services/client-reset.ts(2,7): error TS2451: Cannot redeclare block-scoped variable 'msgg'.
+server/auth-service/mongo_api/services/client-reset.ts(4,10): error TS2393: Duplicate function implementation.
+server/auth-service/mongo_api/services/client-reset.ts(54,10): error TS2393: Duplicate function implementation.
+server/auth-service/mongo_api/services/user_service.ts(21,21): error TS2307: Cannot find module './cars_api' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(34,37): error TS2307: Cannot find module './multi_payment_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(85,29): error TS2307: Cannot find module './cars_services' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(86,43): error TS2307: Cannot find module './faqs_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(87,55): error TS2307: Cannot find module './feedback_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(88,46): error TS2307: Cannot find module './sos_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(89,37): error TS2307: Cannot find module './gamification_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(90,33): error TS2307: Cannot find module './location_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(91,33): error TS2307: Cannot find module './currency_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(92,38): error TS2307: Cannot find module './payment_router_service' or its corresponding type declarations.
+server/auth-service/mongo_api/tests/unit/services/gamification_service.test.ts(3,37): error TS2307: Cannot find module '../../../services/gamification_service' or its corresponding type declarations.
+server/auth-service/mongo_api/tests/unit/services/ride_service.test.ts(2,29): error TS2307: Cannot find module '../../../services/ride_service' or its corresponding type declarations.
+server/flight-booking-service/controllers/booking.controller.ts(85,46): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'Identifier'.
+  Type 'string[]' is not assignable to type 'Identifier'.
+    Type 'string[]' is missing the following properties from type 'Buffer<ArrayBufferLike>': subarray, write, toJSON, equals, and 73 more.
+server/flight-booking-service/controllers/booking.controller.ts(95,46): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'Identifier'.
+  Type 'string[]' is not assignable to type 'Identifier'.
+    Type 'string[]' is missing the following properties from type 'Buffer<ArrayBufferLike>': subarray, write, toJSON, equals, and 73 more.
+server/flight-inventory-service/controllers/inventory.controller.ts(56,44): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(this: (new () => Flight) & typeof Model, identifier?: Identifier, options?: Omit<FindOptions, "where">): Promise<Flight>', gave the following error.
+    Argument of type 'string | string[]' is not assignable to parameter of type 'Identifier'.
+      Type 'string[]' is not assignable to type 'Identifier'.
+        Type 'string[]' is missing the following properties from type 'Buffer<ArrayBufferLike>': subarray, write, toJSON, equals, and 73 more.
+  Overload 2 of 2, '(this: (new () => Flight) & typeof Model, identifier: Identifier, options: Omit<NonNullFindOptions, "where">): Promise<Flight>', gave the following error.
+    Argument of type 'string | string[]' is not assignable to parameter of type 'Identifier'.
+      Type 'string[]' is not assignable to type 'Identifier'.
+        Type 'string[]' is missing the following properties from type 'Buffer<ArrayBufferLike>': subarray, write, toJSON, equals, and 73 more.
+server/ride-service/mongo_api/services/client-reset.ts(1,7): error TS2451: Cannot redeclare block-scoped variable 'linkUrl'.
+server/ride-service/mongo_api/services/client-reset.ts(2,7): error TS2451: Cannot redeclare block-scoped variable 'msgg'.
+server/ride-service/mongo_api/services/client-reset.ts(4,10): error TS2393: Duplicate function implementation.
+server/ride-service/mongo_api/services/client-reset.ts(54,10): error TS2393: Duplicate function implementation.
+server/ride-service/mongo_api/services/driver_services.ts(43,29): error TS2307: Cannot find module '../../shared/constants' or its corresponding type declarations.
+server/ride-service/mongo_api/services/multi_payment_service.ts(8,30): error TS2307: Cannot find module '../../shared/constants' or its corresponding type declarations.

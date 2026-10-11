@@ -1,0 +1,111 @@
+/* MapTheme.css — Unified Pixel-Perfect Map & Bottom-Sheet System */
+
+:root {
+  --map-silver: #f3f4f6;
+  --map-dark: #1e293b;
+  --sheet-radius: 28px;
+  --premium-accent: #3b82f6;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+/* 1. Map Container Rework */
+.edge-to-edge-map {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.map-overlay-container {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.map-overlay-container > * {
+  pointer-events: auto;
+}
+
+/* 2. Bottom Sheet Foundation */
+.bottom-sheet {
+  background: white;
+  border-radius: var(--sheet-radius) var(--sheet-radius) 0 0;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+  padding: 24px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  animation: slideUp 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 100%); }
+  to { transform: translate(-50%, 0); }
+}
+
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  margin: -12px auto 20px;
+}
+
+/* 3. Silver Map Style overrides */
+.leaflet-container {
+    background: var(--map-silver) !important;
+}
+
+/* Marker Glow effects */
+.car-marker-premium {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
+    transition: transform 0.3s ease;
+}
+
+.marker-pulse {
+    width: 20px;
+    height: 20px;
+    background: var(--premium-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    animation: pulse-ring 1.5s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* 4. Notification Overlays */
+.map-notification {
+    background: #000;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}

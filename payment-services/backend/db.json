@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "username": "john_doe",
+      "email": "john@example.com",
+      "activePlan": "FREE",
+      "subscriptionStatus": "NONE",
+      "planExpiry": null
+    },
+    {
+      "username": "jane_smith",
+      "email": "jane@example.com",
+      "activePlan": "PRO",
+      "subscriptionStatus": "ACTIVE",
+      "planExpiry": "2026-06-24T15:22:46.625Z"
+    },
+    {
+      "username": "guest_user",
+      "email": "guest_user@example.com",
+      "activePlan": "PRO",
+      "subscriptionStatus": "ACTIVE",
+      "planExpiry": "2026-07-09T18:28:37.701Z"
+    }
+  ],
+  "transactions": [
+    {
+      "reference": "TX-1781018634042-b7vv8eo37",
+      "userId": "guest_user",
+      "planId": "STARTER",
+      "amount": 5000,
+      "currency": "NGN",
+      "provider": "paystack",
+      "status": "SUCCESS",
+      "paymentDetails": {
+        "status": true,
+        "message": "Simulation successful",
+        "data": {
+          "status": "success",
+          "reference": "TX-1781018634042-b7vv8eo37"
+        }
+      },
+      "createdAt": "2026-06-09T15:23:54.043Z",
+      "updatedAt": "2026-06-09T15:23:57.328Z"
+    },
+    {
+      "reference": "TX-1781029713675-8bj126cri",
+      "userId": "guest_user",
+      "planId": "PRO",
+      "amount": 15000,
+      "currency": "NGN",
+      "provider": "paystack",
+      "status": "SUCCESS",
+      "paymentDetails": {
+        "status": true,
+        "message": "Simulation successful",
+        "data": {
+          "status": "success",
+          "reference": "TX-1781029713675-8bj126cri"
+        }
+      },
+      "createdAt": "2026-06-09T18:28:33.677Z",
+      "updatedAt": "2026-06-09T18:28:37.701Z"
+    }
+  ]
+}

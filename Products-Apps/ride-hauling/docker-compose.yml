@@ -1,0 +1,146 @@
+version: '3.8'
+
+services:
+  # ── Infrastructure ────────────────────────────────────────────────
+  mongodb:
+    image: mongo:6
+    container_name: taxi-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: taxi-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: taxi-rabbitmq
+    ports:
+      - "5672:5672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  auth-db:
+    image: postgres:15-alpine
+    container_name: auth-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: auth_db
+    ports:
+      - "55432:5432"
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Microservices ─────────────────────────────────────────────────
+  auth-service:
+    build:
+      context: ./taxi-server
+      dockerfile: Dockerfile.auth
+    container_name: taxi-auth
+    environment:
+      - PORT=12001
+      - MONGO_URI=mongodb://mongodb:27017/auth_db
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=your_jwt_secret_key_here
+      - SECRET=your_jwt_secret_key_here
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - EMAIL_FROM=Queens App <no-reply@queens.com>
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - SAAS_CLIENT_SECRET=${SAAS_CLIENT_SECRET}
+    depends_on:
+      auth-db:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:12001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  ride-service:
+    build:
+      context: ./taxi-server
+      dockerfile: Dockerfile.ride
+    container_name: taxi-ride
+    environment:
+      - PORT=12002
+      - MONGO_URI=mongodb://mongodb:27017/taxi_service
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=your_jwt_secret_key_here
+      - SECRET=your_jwt_secret_key_here
+    depends_on:
+      mongodb:
+        condition: service_started
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:12002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ── API Gateway (frontend entry point) ────────────────────────────
+  api-gateway:
+    build:
+      context: ./taxi-server
+      dockerfile: Dockerfile.gateway
+    container_name: taxi-gateway
+    environment:
+      - PORT=12000
+      - AUTH_SERVICE_URL=http://auth-service:12001
+      - RIDE_SERVICE_URL=http://ride-service:12002
+      - FLIGHT_INVENTORY_URL=http://flight-inventory-service:12003
+      - FLIGHT_BOOKING_URL=http://flight-booking-service:12004
+      - SHIPPING_SERVICE_URL=http://shipping-service:12006
+      - AI_OS_URL=http://ai-os:12010
+      - SAAS_GATEWAY_URL=http://host.docker.internal:3000
+      - SAAS_AUTH_URL=http://host.docker.internal:3000/auth
+      - SAAS_CLIENT_ID=taxi-server
+      - SAAS_CLIENT_SECRET=${SAAS_CLIENT_SECRET}
+      - SAAS_SCOPES=wallet:read earnings:read trips:read
+    ports:
+      - "12000:12000"
+    depends_on:
+      auth-service:
+        condition: service_started
+      ride-service:
+        condition: service_started
+
+volumes:
+  auth_db_data:
+  mongodb_data:

@@ -1,0 +1,33 @@
+/* User Management & Directory Styles */
+
+.users-view .table-custom td {
+  padding: 1.25rem 1rem !important;
+}
+
+.user-avatar-placeholder {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: var(--transition-smooth);
+}
+
+.user-avatar-placeholder:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.badge-role {
+  padding: 0.4em 0.8em;
+  font-weight: 800;
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+}
+
+.badge-admin { background: #fee2e2; color: #991b1b; }
+.badge-user { background: #e0f2fe; color: #075985; }
+.badge-partner { background: #fef3c7; color: #92400e; }
+
+.user-search-glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+}

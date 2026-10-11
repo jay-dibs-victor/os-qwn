@@ -1,0 +1,106 @@
+/* LiveMap.css — High-Fidelity Map Styles */
+
+.live-map-container {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0f172a;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.custom-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marker-pin {
+    width: 36px;
+    height: 36px;
+    border-radius: 50% 50% 50% 0;
+    background: #ffb800;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -18px 0 0 -18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border: 2px solid #fff;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.driver-marker .marker-pin { background: #3b82f6; }
+.rider-marker .marker-pin { background: #10b981; transform: scale(0.85) rotate(-45deg); }
+.fleet-marker .marker-pin { background: #8b5cf6; }
+
+.marker-pin i {
+    transform: rotate(45deg);
+    color: white;
+    font-size: 16px;
+}
+
+.custom-marker:hover .marker-pin {
+    transform: scale(1.1) rotate(-45deg);
+    z-index: 999;
+}
+
+/* Premium Popup Styles */
+.premium-popup .leaflet-popup-content-wrapper {
+    background: rgba(15, 23, 42, 0.9) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.premium-popup .leaflet-popup-tip {
+    background: rgba(15, 23, 42, 0.9) !important;
+}
+
+.profile-card-animated {
+    animation: slideUpFade 0.4s ease-out;
+}
+
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Event Toasts */
+.event-toast {
+    background: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    min-width: 220px;
+}
+
+.icon-circle-sm {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Soft badges inside popup */
+.bg-success-soft {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+}

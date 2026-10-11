@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container { font-family: sans-serif; padding: 20px; }
+        .header { background: #f4f4f4; padding: 10px; text-align: center; }
+        .content { margin-top: 20px; }
+        .footer { margin-top: 30px; font-size: 12px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Flight Booking Confirmation</h2>
+        </div>
+        <div class="content">
+            <p>Hello {{username}},</p>
+            <p>Your flight booking has been confirmed!</p>
+            <hr>
+            <p><strong>Flight Number:</strong> {{flightNumber}}</p>
+            <p><strong>Departure:</strong> {{departure}}</p>
+            <p><strong>Arrival:</strong> {{arrival}}</p>
+            <p><strong>Time:</strong> {{time}}</p>
+            <hr>
+            <p>Thank you for choosing GoomTaxi Flights.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 GoomTaxi Service. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

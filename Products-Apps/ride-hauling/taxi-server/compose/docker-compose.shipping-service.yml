@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  shipping-service:
+    build:
+      context: ..
+      dockerfile: Dockerfile.shipping
+    environment:
+      PORT: ${SHIPPING_PORT:-12006}
+      MONGO_URI: ${MONGO_URI:-mongodb://mongodb:27017/taxi_service}
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://rabbitmq:5672}
+    ports:
+      - "${SHIPPING_PORT:-12006}:${SHIPPING_PORT:-12006}"
+    networks:
+      - taxi-net
+
+networks:
+  taxi-net:
+    external: true
+    name: taxi-net

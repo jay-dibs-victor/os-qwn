@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  ai-os:
+    build:
+      context: ..
+      dockerfile: server/operating-system/Dockerfile
+    environment:
+      PORT: ${AI_OS_PORT:-12010}
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://rabbitmq:5672}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
+      TEMPORAL_ADDRESS: ${TEMPORAL_ADDRESS:-temporal:7233}
+      LIVEKIT_HOST: ${LIVEKIT_HOST:-http://livekit:7880}
+      GATEWAY_URL: ${GATEWAY_URL:-http://api-gateway:12000}
+      NODE_ENV: ${NODE_ENV:-DEVELOPMENT}
+    ports:
+      - "${AI_OS_PORT:-12010}:${AI_OS_PORT:-12010}"
+    networks:
+      - taxi-net
+
+  ai-os-worker:
+    build:
+      context: ..
+      dockerfile: server/operating-system/Dockerfile
+    command: ["npm", "run", "start:ai-os-worker"]
+    environment:
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://rabbitmq:5672}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
+      TEMPORAL_ADDRESS: ${TEMPORAL_ADDRESS:-temporal:7233}
+      LIVEKIT_HOST: ${LIVEKIT_HOST:-http://livekit:7880}
+      GATEWAY_URL: ${GATEWAY_URL:-http://api-gateway:12000}
+      NODE_ENV: ${NODE_ENV:-DEVELOPMENT}
+    networks:
+      - taxi-net
+
+networks:
+  taxi-net:
+    external: true
+    name: taxi-net

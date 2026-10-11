@@ -1,0 +1,74 @@
+/* 
+ * ManageOperations — GoomTaxi Booking & Dispatch Styles
+ */
+
+.bookings-view .card {
+  transition: var(--transition-smooth);
+}
+
+.bookings-view .badge {
+  padding: 0.5em 1em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+}
+
+.itinerary-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--color-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+}
+
+.itinerary-row i {
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+
+.timeline-connector {
+  position: absolute;
+  left: 6px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-danger));
+  opacity: 0.2;
+}
+
+.bookings-view .table-custom td {
+  padding: 1.25rem 1rem !important;
+}
+
+.search-box-premium {
+  background: var(--color-white);
+  border: 1px solid rgba(0,0,0,0.05);
+.pulse {
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+}
+
+.sos-view .badge-danger {
+  background: #ff4757;
+  color: white;
+}
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  border-radius: 12px;
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: var(--transition-smooth);
+}
+
+.search-box-premium:focus-within {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 8px 16px rgba(30, 64, 175, 0.05);
+}

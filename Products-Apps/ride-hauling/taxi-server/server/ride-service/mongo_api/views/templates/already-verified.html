@@ -1,0 +1,602 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Queens</title>
+
+  <style type="text/css">
+    .success-checkmark-verified {
+      width: 80px;
+      height: 115px;
+      margin: 0 auto;
+
+    }
+
+    .success-checkmark-verified .check-icon {
+      width: 80px;
+      height: 80px;
+      position: relative;
+      border-radius: 50%;
+      box-sizing: content-box;
+      border: 4px solid #4caf50;
+    }
+
+    .success-checkmark-verified .check-icon::before {
+      top: 3px;
+      left: -2px;
+      width: 30px;
+      transform-origin: 100% 50%;
+      border-radius: 100px 0 0 100px;
+    }
+
+    .success-checkmark-verified .check-icon::after {
+      top: 0;
+      left: 30px;
+      width: 60px;
+      transform-origin: 0 50%;
+      border-radius: 0 100px 100px 0;
+      animation: rotate-circle 4.25s ease-in;
+    }
+
+    .success-checkmark-verified .check-icon::before,
+    .success-checkmark-verified .check-icon::after {
+      content: '';
+      height: 100px;
+      position: absolute;
+      background: #fff;
+      transform: rotate(-45deg);
+    }
+
+    .success-checkmark-verified .check-icon .icon-line {
+      height: 5px;
+      background-color: #4caf50;
+      display: block;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 10;
+    }
+
+    .success-checkmark-verified .check-icon .icon-line.line-tip {
+      top: 46px;
+      left: 14px;
+      width: 25px;
+      transform: rotate(45deg);
+      animation: icon-line-tip 0.75s;
+    }
+
+    .success-checkmark-verified .check-icon .icon-line.line-long {
+      top: 38px;
+      right: 8px;
+      width: 47px;
+      transform: rotate(-45deg);
+      animation: icon-line-long 0.75s;
+    }
+
+    .success-checkmark-verified .check-icon .icon-circle {
+      top: -4px;
+      left: -4px;
+      z-index: 10;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      box-sizing: content-box;
+      border: 4px solid rgba(76, 175, 80, .5);
+    }
+
+    .success-checkmark-verified .check-icon .icon-fix {
+      top: 8px;
+      width: 5px;
+      left: 26px;
+      z-index: 1;
+      height: 85px;
+      position: absolute;
+      transform: rotate(-45deg);
+      background-color: #fff;
+    }
+
+    @keyframes rotate-circle {
+      0% {
+        transform: rotate(-45deg);
+      }
+
+      5% {
+        transform: rotate(-45deg);
+      }
+
+      12% {
+        transform: rotate(-405deg);
+      }
+
+      100% {
+        transform: rotate(-405deg);
+      }
+    }
+
+    @keyframes icon-line-tip {
+      0% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+      }
+
+      54% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+      }
+
+      70% {
+        width: 50px;
+        left: -8px;
+        top: 37px;
+      }
+
+      84% {
+        width: 17px;
+        left: 21px;
+        top: 48px;
+      }
+
+      100% {
+        width: 25px;
+        left: 14px;
+        top: 45px;
+      }
+    }
+
+    @keyframes icon-line-long {
+      0% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+      }
+
+      65% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+      }
+
+      84% {
+        width: 55px;
+        right: 0px;
+        top: 35px;
+      }
+
+      100% {
+        width: 47px;
+        right: 8px;
+        top: 38px;
+      }
+    }
+
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      border: 1px dotted lightgray;
+      padding: .5em;
+      margin-top: 0;
+    }
+
+    img {
+      display: block;
+      margin: auto;
+    }
+
+    p {
+      padding: 0 5px;
+      text-align: justify;
+      margin-bottom: 5px;
+    }
+
+    .bolddetail {
+      font-size: .85em;
+      font-weight: bold;
+      margin-top: 5px;
+      line-height: 90%;
+      text-indent: 20px;
+    }
+
+    footer {
+      font-size: .75em;
+      margin-top: -10px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+
+    article {
+      width: 30%;
+      margin: 1%;
+      display: block;
+      border: 1px solid lightblue;
+      /*float: left;*/
+      margin: 50px auto;
+    }
+
+    .clearfixed:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    #banner {
+      background: darkgray;
+      color: yellow;
+      margin: 0;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .headers {
+      font-size: 1.25em;
+      text-indent: 15px;
+    }
+  </style>
+
+
+
+
+
+
+  <style type="text/css">
+    .success-checkmark-verified {
+      width: 80px;
+      height: 115px;
+      margin: 0 auto;
+
+    }
+
+    .success-checkmark-verified .check-icon {
+      width: 80px;
+      height: 80px;
+      position: relative;
+      border-radius: 50%;
+      box-sizing: content-box;
+      border: 4px solid #4caf50;
+    }
+
+    .success-checkmark-verified .check-icon::before {
+      top: 3px;
+      left: -2px;
+      width: 30px;
+      transform-origin: 100% 50%;
+      border-radius: 100px 0 0 100px;
+    }
+
+    .success-checkmark-verified .check-icon::after {
+      top: 0;
+      left: 30px;
+      width: 60px;
+      transform-origin: 0 50%;
+      border-radius: 0 100px 100px 0;
+      animation: rotate-circle 4.25s ease-in;
+    }
+
+    .success-checkmark-verified .check-icon::before,
+    .success-checkmark-verified .check-icon::after {
+      content: '';
+      height: 100px;
+      position: absolute;
+      background: #fff;
+      transform: rotate(-45deg);
+    }
+
+    .success-checkmark-verified .check-icon .icon-line {
+      height: 5px;
+      background-color: #4caf50;
+      display: block;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 10;
+    }
+
+    .success-checkmark-verified .check-icon .icon-line.line-tip {
+      top: 46px;
+      left: 14px;
+      width: 25px;
+      transform: rotate(45deg);
+      animation: icon-line-tip 0.75s;
+    }
+
+    .success-checkmark-verified .check-icon .icon-line.line-long {
+      top: 38px;
+      right: 8px;
+      width: 47px;
+      transform: rotate(-45deg);
+      animation: icon-line-long 0.75s;
+    }
+
+    .success-checkmark-verified .check-icon .icon-circle {
+      top: -4px;
+      left: -4px;
+      z-index: 10;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      box-sizing: content-box;
+      border: 4px solid rgba(76, 175, 80, .5);
+    }
+
+    .success-checkmark-verified .check-icon .icon-fix {
+      top: 8px;
+      width: 5px;
+      left: 26px;
+      z-index: 1;
+      height: 85px;
+      position: absolute;
+      transform: rotate(-45deg);
+      background-color: #fff;
+    }
+
+    @keyframes rotate-circle {
+      0% {
+        transform: rotate(-45deg);
+      }
+
+      5% {
+        transform: rotate(-45deg);
+      }
+
+      12% {
+        transform: rotate(-405deg);
+      }
+
+      100% {
+        transform: rotate(-405deg);
+      }
+    }
+
+    @keyframes icon-line-tip {
+      0% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+      }
+
+      54% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+      }
+
+      70% {
+        width: 50px;
+        left: -8px;
+        top: 37px;
+      }
+
+      84% {
+        width: 17px;
+        left: 21px;
+        top: 48px;
+      }
+
+      100% {
+        width: 25px;
+        left: 14px;
+        top: 45px;
+      }
+    }
+
+    @keyframes icon-line-long {
+      0% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+      }
+
+      65% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+      }
+
+      84% {
+        width: 55px;
+        right: 0px;
+        top: 35px;
+      }
+
+      100% {
+        width: 47px;
+        right: 8px;
+        top: 38px;
+      }
+    }
+  </style>
+
+
+
+  <style type="text/css">
+    img {
+      max-width: 100%;
+    }
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: none;
+      width: 100% !important;
+      height: 100%;
+      line-height: 1.6em;
+    }
+
+    body {
+      background-color: #f6f6f6;
+    }
+
+    @media only screen and (max-width: 640px) {
+      body {
+        padding: 0 !important;
+      }
+
+      h1 {
+        font-weight: 800 !important;
+        margin: 20px 0 5px !important;
+      }
+
+      h2 {
+        font-weight: 800 !important;
+        margin: 20px 0 5px !important;
+      }
+
+      h3 {
+        font-weight: 800 !important;
+        margin: 20px 0 5px !important;
+      }
+
+      h4 {
+        font-weight: 800 !important;
+        margin: 20px 0 5px !important;
+      }
+
+      h1 {
+        font-size: 22px !important;
+      }
+
+      h2 {
+        font-size: 18px !important;
+      }
+
+      h3 {
+        font-size: 16px !important;
+      }
+
+      .container {
+        padding: 0 !important;
+        width: 100% !important;
+      }
+
+      .content {
+        padding: 0 !important;
+      }
+
+      .content-wrap {
+        padding: 10px !important;
+      }
+
+      .invoice {
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+
+<body
+  style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em; background-color: #f6f6f6; margin: 0;"
+  bgcolor="#f6f6f6">
+
+  <table style="margin:50px auto" class="body-wrap"
+    style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;"
+    bgcolor="#f6f6f6">
+    <tr
+      style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+      <td
+        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;"
+        valign="top"></td>
+      <td class="container" width="600"
+        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto;"
+        valign="top">
+        <div class="content"
+          style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
+          <table class="main" width="100%" cellpadding="0" cellspacing="0" itemprop="action" itemscope
+            itemtype="http://schema.org/ConfirmAction"
+            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; border-radius: 3px; background-color: #fff; margin: 0; border: 1px solid #e9e9e9;"
+            bgcolor="#fff">
+            <tr
+              style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+              <td class="content-wrap"
+                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 20px;"
+                valign="top">
+                <meta itemprop="name" content="Confirm Email"
+                  style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" />
+                <table width="100%" cellpadding="0" cellspacing="0"
+                  style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                  <tr
+                    style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+
+                    <td class="content-block"
+                      style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
+                      valign="top">
+
+
+                      <div>
+                        <!-- card 1-->
+
+
+                        <header style="border:none">
+                          <h2 style="border:none">Account verified</h2>
+                        </header>
+                        <div class="success-checkmark-verified">
+                          <div class="check-icon">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
+                          </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+                      </div>
+
+
+
+
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <div class="footer"
+            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+            <table width="100%"
+              style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+              <tr
+                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                <td class="aligncenter content-block"
+                  style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;"
+                  align="center" valign="top">
+                  <p class="bolddetail">Please log in <a id="login-link" href="#">here</a></p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </td>
+      <td
+        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;"
+        valign="top"></td>
+    </tr>
+  </table>
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+  document.getElementById("login-link").href = "{{USER_APP_URL}}/"
+</script>

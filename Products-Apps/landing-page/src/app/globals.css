@@ -1,0 +1,682 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #FFB800;
+  --color-primary-dark: #CC9300;
+  --color-primary-light: #FFC933;
+
+  --color-accent-purple: #8B5CF6;
+  --color-accent-blue: #0EA5E9;
+
+  --color-background: #000000;
+  --color-surface: #080808;
+  --color-surface-light: #111111;
+  --color-foreground: #FFFFFF;
+  --color-foreground-muted: #A1A1AA;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-outfit: var(--font-outfit), sans-serif;
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary: #FFB800;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Layout ─────────────────────────────────── */
+.section-wrapper {
+  width: 100%;
+  padding-top: clamp(4rem, 10vw, 7rem);
+  padding-bottom: clamp(4rem, 10vw, 7rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-inner {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-inner {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Keep old container-custom for backward compat */
+.container-custom {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+.mobile-only {
+  display: block;
+}
+@media (min-width: 1024px) {
+  .mobile-only {
+    display: none;
+  }
+}
+
+.desktop-only {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* ─── Glassmorphism ─────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.70);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Text utilities ────────────────────────── */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #FFB800 0%, #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.fluid-h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.fluid-h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.fluid-body {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.6;
+}
+
+/* ─── Background grid ───────────────────────── */
+.bg-grid-white {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.04)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
+}
+
+/* ─── Equal-height card grids ───────────────── */
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.card-grid-4 {
+  grid-template-columns: 1fr;
+}
+
+.card-grid-3 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .card-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .card-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  height: 100%;
+  min-height: 240px;
+}
+
+.network-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 1023px) {
+  .network-container > div {
+    min-width: 900px;
+    transform: scale(0.85);
+  }
+}
+
+.mobile-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .mobile-stack {
+    flex-direction: row;
+  }
+}
+
+/* ─── Pitch Deck Layout ──────────────────────── */
+
+/* The full-screen slide shell */
+.pitch-shell {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: flex-start; /* Ensure top content is visible on mobile */
+  justify-content: center;
+  position: relative;
+  overflow-y: auto;
+  padding: clamp(5rem, 15vh, 7rem) clamp(1rem, 4vw, 2rem) 4rem clamp(1rem, 4vw, 2rem);
+}
+
+@media (min-width: 1024px) {
+  .pitch-shell {
+    align-items: center;
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .pitch-shell {
+    padding: 3rem 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .pitch-shell {
+    padding: 3rem 5rem;
+  }
+}
+
+.butten-padded {
+  padding: 10px;
+}
+
+.pitch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem 3rem;
+  font-weight: 800;
+  font-size: 1.125rem;
+  border-radius: 1.25rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.pitch-btn-primary {
+  background: #FFB800;
+  color: #000000;
+  box-shadow: 0 0 40px rgba(255, 184, 0, 0.2);
+}
+
+.pitch-btn-primary:hover {
+  background: #FFC933;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 48px rgba(255, 184, 0, 0.4);
+}
+
+.pitch-btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.pitch-btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Centered content well inside a slide */
+.pitch-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 2rem;
+}
+
+/* Pitch card: uniform internal padding & border */
+.pitch-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Accent card variant */
+.pitch-card-accent {
+  border-color: rgba(255, 184, 0, 0.25);
+  background: rgba(255, 184, 0, 0.05);
+}
+
+/* Pitch card grid: always stretch children to equal height */
+.pitch-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.pitch-grid-2 {
+  grid-template-columns: 1fr;
+}
+
+.pitch-grid-3 {
+  grid-template-columns: 1fr;
+}
+
+.pitch-grid-4 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .pitch-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pitch-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pitch-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pitch-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Pitch list: for manual lists inside cards */
+.pitch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Pitch section label */
+.pitch-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #FFB800;
+  margin-bottom: 1.25rem;
+}
+
+/* Pitch heading */
+.pitch-h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-outfit);
+}
+
+.pitch-h2 {
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  font-family: var(--font-outfit);
+}
+
+/* Pitch body text */
+.pitch-body {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #A1A1AA;
+  margin-bottom: 2rem;
+  max-width: 48ch;
+}
+
+/* Pitch stat number */
+.pitch-stat-value {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  font-family: var(--font-outfit);
+  color: #FFB800;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+/* Horizontal rule separator */
+.pitch-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  margin: 1.5rem 0;
+}
+
+/* ─── Premium Modal Styles ────────────────────── */
+.demo-modal-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.25rem 1.25rem 1.25rem 3.5rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.demo-modal-input:focus {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 184, 0, 0.4);
+  box-shadow: 0 0 20px rgba(255, 184, 0, 0.05);
+}
+
+.demo-modal-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.demo-modal-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+.time-slot-btn {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.time-slot-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.time-slot-btn.active {
+  background: #FFB800;
+  border-color: #FFB800;
+  color: #000000;
+  box-shadow: 0 8px 24px rgba(255, 184, 0, 0.25);
+}
+
+.demo-modal-btn-primary {
+  width: 100%;
+  padding: 1.25rem;
+  background: #FFB800;
+  color: #000000;
+  font-weight: 800;
+  border-radius: 1rem;
+  border: none;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 184, 0, 0.2);
+}
+
+.demo-modal-btn-primary:hover {
+  background: #FFC933;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255, 184, 0, 0.35);
+}
+
+.demo-modal-btn-primary:active {
+  transform: translateY(0);
+}
+
+.demo-modal-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── Modal Layout Utilities ─────────────────── */
+.modal-container {
+  padding: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .modal-container {
+    padding: 3.5rem;
+  }
+}
+
+.modal-section {
+  margin-bottom: 2.5rem;
+}
+
+.modal-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Success Modal Styles */
+.modal-success-icon {
+  width: 6rem;
+  height: 6rem;
+  background: rgba(255, 184, 0, 0.1);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 64px rgba(255, 184, 0, 0.1);
+}
+
+.modal-success-card {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  border-radius: 2rem;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-success-btn {
+  width: 100%;
+  padding: 1.5rem !important;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-weight: 800;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal-success-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Legal Typography ───────────────────────── */
+.legal-content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.legal-section {
+  margin-bottom: 4rem;
+}
+
+.legal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-outfit);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.legal-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #A1A1AA;
+  margin-bottom: 1.5rem;
+}
+
+.legal-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #A1A1AA;
+}
+
+.legal-list li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.legal-list strong {
+  color: #ffffff;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* ── Scrollbar Utilities ──────────────────────── */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

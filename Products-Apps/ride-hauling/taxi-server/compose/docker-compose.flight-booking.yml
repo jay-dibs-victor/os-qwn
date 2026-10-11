@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  flight-booking-service:
+    build:
+      context: ..
+      dockerfile: Dockerfile.flight-booking
+    environment:
+      PORT: ${FLIGHT_BOOKING_PORT:-12004}
+      DB_URL: ${FLIGHT_BOOKING_DB_URL:-postgres://admin:admin@postgres:5432/flight_service}
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://rabbitmq:5672}
+      NODE_ENV: ${NODE_ENV:-DEVELOPMENT}
+    ports:
+      - "${FLIGHT_BOOKING_PORT:-12004}:${FLIGHT_BOOKING_PORT:-12004}"
+    networks:
+      - taxi-net
+
+networks:
+  taxi-net:
+    external: true
+    name: taxi-net

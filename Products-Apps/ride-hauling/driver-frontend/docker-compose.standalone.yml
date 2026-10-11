@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  driver-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Change this to your production API Gateway URL
+        - VITE_API_URL=${PROD_GATEWAY_URL:-http://localhost:12000/api/v1}
+    container_name: taxi-driver-frontend-standalone
+    ports:
+      - "${PORT:-4004}:4004"
+    environment:
+      - PORT=${PORT:-4004}
+    restart: unless-stopped

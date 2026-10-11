@@ -1,0 +1,638 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: banking_user
+      POSTGRES_PASSWORD: banking_password
+      POSTGRES_DB: banking_db
+    ports:
+      - '15432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - '16379:6379'
+    volumes:
+      - redis_data:/data
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: always
+    ports:
+      - '15673:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_ERLANG_COOKIE: "QUEENS_OS_RABBITMQ_SECURE_COOKIE_2026"
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - AUTH_SERVICE_HOST=auth-service
+      - AUTH_SERVICE_PORT=3001
+      - RBAC_SERVICE_HOST=rbac-service
+      - RBAC_SERVICE_PORT=3002
+      - APPROVAL_SERVICE_HOST=approval-service
+      - APPROVAL_SERVICE_PORT=3004
+      - LEDGER_SERVICE_HOST=ledger-service
+      - LEDGER_SERVICE_PORT=3003
+      - ACCOUNTS_SERVICE_HOST=accounts-service
+      - ACCOUNTS_SERVICE_PORT=3005
+      - PAYMENT_SERVICE_HOST=payment-service
+      - PAYMENT_SERVICE_PORT=3006
+      - BATCH_SERVICE_HOST=batch-service
+      - BATCH_SERVICE_PORT=3007
+      - REVERSAL_SERVICE_HOST=reversal-service
+      - REVERSAL_SERVICE_PORT=3008
+      - RETRY_SERVICE_HOST=retry-service
+      - RETRY_SERVICE_PORT=3009
+      - KYC_SERVICE_HOST=kyc-service
+      - KYC_SERVICE_PORT=3010
+      - COMPLIANCE_SERVICE_HOST=compliance-service
+      - COMPLIANCE_SERVICE_PORT=3011
+      - AUDIT_SERVICE_HOST=audit-service
+      - AUDIT_SERVICE_PORT=3012
+      - LOAN_SERVICE_HOST=loan-service
+      - LOAN_SERVICE_PORT=3013
+      - CUSTOMER_SERVICE_HOST=customer-service
+      - CUSTOMER_SERVICE_PORT=3014
+      - OVERDRAFT_SERVICE_HOST=overdraft-service
+      - OVERDRAFT_SERVICE_PORT=3016
+      - WALLET_SERVICE_HOST=wallet-service
+      - WALLET_SERVICE_PORT=3015
+      - NOTIFICATION_SERVICE_HOST=notification-service
+      - NOTIFICATION_SERVICE_PORT=3017
+      - RABBITMQ_URI=amqp://guest:guest@rabbitmq:5672
+    command: ["node", "dist/apps/api-gateway/main.js"]
+    depends_on:
+      - rabbitmq
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/auth-service/main.js"]
+    ports:
+      - '3001:3001'
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=banking_user
+      - POSTGRES_PASSWORD=banking_password
+      - POSTGRES_DB=banking_db
+      - RABBITMQ_URI=amqp://guest:guest@rabbitmq:5672
+      - RABBITMQ_AUTH_QUEUE=auth
+      - RBAC_SERVICE_URL=http://rbac-service:3002/rbac
+      - JWT_SECRET=super-secret-key-change-me
+      - JWT_EXPIRATION=3600
+      - SENDGRID_API_KEY=placeholder-for-old-image-validation
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - MAIL_FROM_EMAIL=noreply@queensos.com
+      - MAIL_FROM_NAME=Queens OS
+      - WALLET_SERVICE_URL=http://wallet-service:3015
+      - PAYMENT_SERVICE_URL=http://payment-service:3006
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # ── Google OAuth ───────────────────────────────────────────────────────
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_CALLBACK_URL=http://localhost:3001/auth/google/callback
+      - FRONTEND_URL=http://localhost:3000
+      # ── File Upload (adapter pattern) ──────────────────────────────────────
+      # Switch between 'cloudinary' (default) and 's3' (production)
+      - UPLOAD_PROVIDER=cloudinary
+      # Cloudinary — set your real values here or via .env injection
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME:-questence}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      # AWS S3 — uncomment and set when UPLOAD_PROVIDER=s3
+      # - AWS_S3_BUCKET=${AWS_S3_BUCKET}
+      # - AWS_S3_REGION=${AWS_S3_REGION:-us-east-1}
+      # - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      # - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      # - AWS_S3_PUBLIC_URL=${AWS_S3_PUBLIC_URL}
+    depends_on:
+      - postgres
+      - rabbitmq
+      - redis
+
+  rbac-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rbac
+    ports:
+      - '15439:5432'
+
+  rbac-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/rbac-service/main.js"]
+    ports:
+      - '3002:3002'
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+      - POSTGRES_HOST=rbac-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rbac
+    depends_on:
+      - rbac-db
+
+  approval-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: approval
+    ports:
+      - '15433:5432'
+
+  approval-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/approval-service/main.js"]
+    ports:
+      - '3004:3004'
+    environment:
+      - NODE_ENV=development
+      - PORT=3004
+      - POSTGRES_HOST=approval-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=approval
+      - RBAC_SERVICE_HOST=rbac-service
+      - RBAC_SERVICE_PORT=3002
+      - API_GATEWAY_URL=http://api-gateway:3000
+    depends_on:
+      - approval-db
+      - rbac-service
+
+  ledger-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ledger
+    ports:
+      - '15434:5432'
+
+  ledger-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/ledger-service/main.js"]
+    ports:
+      - '3003:3003'
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+      - POSTGRES_HOST=ledger-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ledger
+      - ACCOUNTS_SERVICE_HOST=accounts-service
+      - ACCOUNTS_SERVICE_PORT=3005
+      - LEDGER_SERVICE_HOST=ledger-service
+      - LEDGER_SERVICE_PORT=3003
+    depends_on:
+      - ledger-db
+
+  accounts-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: accounts
+    ports:
+      - '15435:5432'
+
+  accounts-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/accounts-service/main.js"]
+    ports:
+      - '3005:3005'
+    environment:
+      - NODE_ENV=development
+      - PORT=3005
+      - POSTGRES_HOST=accounts-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=accounts
+    environment:
+      - NODE_ENV=development
+      - PORT=3005
+      - POSTGRES_HOST=accounts-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=accounts
+      - LEDGER_SERVICE_HOST=ledger-service
+      - LEDGER_SERVICE_PORT=3003
+    depends_on:
+      - accounts-db
+
+  customer-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: customer
+    ports:
+      - '15444:5432'
+
+  customer-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/customer-service/main.js"]
+    ports:
+      - '3014:3014'
+    environment:
+      - NODE_ENV=development
+      - PORT=3014
+      - POSTGRES_HOST=customer-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=customer
+    depends_on:
+      - customer-db
+
+  payment-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: payment
+    ports:
+      - '15436:5432'
+
+  payment-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/payment-service/main.js"]
+    ports:
+      - '3006:3006'
+    environment:
+      - NODE_ENV=development
+      - PORT=3006
+      - POSTGRES_HOST=payment-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=payment
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ACCOUNTS_SERVICE_HOST=accounts-service
+      - ACCOUNTS_SERVICE_PORT=3005
+      - LEDGER_SERVICE_HOST=ledger-service
+      - LEDGER_SERVICE_PORT=3003
+      - WALLET_SERVICE_HOST=wallet-service
+      - WALLET_SERVICE_PORT=3015
+      - PLATFORM_BANK_ACCOUNT=1234567890
+      - PLATFORM_BANK_CODE=044
+      - PAYSTACK_SECRET_KEY=${PAYSTACK_SECRET_KEY}
+      - PAYSTACK_PUBLIC_KEY=${PAYSTACK_PUBLIC_KEY}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - MAIL_FROM_EMAIL=noreply@queensos.com
+      - MAIL_FROM_NAME=Queens OS
+    depends_on:
+      - payment-db
+      - redis
+
+  batch-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: batch
+    ports:
+      - '15437:5432'
+
+  batch-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/batch-service/main.js"]
+    ports:
+      - '3007:3007'
+    environment:
+      - NODE_ENV=development
+      - PORT=3007
+      - port=3007
+      - POSTGRES_HOST=batch-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=batch
+      - PAYMENT_SERVICE_HOST=payment-service
+      - PAYMENT_SERVICE_PORT=3006
+    depends_on:
+      - batch-db
+      - payment-service
+  reversal-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: reversal
+    ports:
+      - '15438:5432'
+
+  reversal-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/reversal-service/main.js"]
+    ports:
+      - '3008:3008'
+    environment:
+      - NODE_ENV=development
+      - PORT=3008
+      - POSTGRES_HOST=reversal-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=reversal
+    depends_on:
+      - reversal-db
+
+  retry-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: retry
+    ports:
+      - '15445:5432'
+
+  retry-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/retry-service/main.js"]
+    ports:
+      - '3009:3009'
+    environment:
+      - NODE_ENV=development
+      - PORT=3009
+      - POSTGRES_HOST=retry-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=retry
+    depends_on:
+      - retry-db
+
+  kyc-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: kyc
+    ports:
+      - '15440:5432'
+
+  kyc-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/kyc-service/main.js"]
+    ports:
+      - '3010:3010'
+    environment:
+      - NODE_ENV=development
+      - PORT=3010
+      - POSTGRES_HOST=kyc-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=kyc
+    depends_on:
+      - kyc-db
+
+  compliance-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: compliance
+    ports:
+      - '15441:5432'
+
+  compliance-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/compliance-service/main.js"]
+    ports:
+      - '3011:3011'
+    environment:
+      - NODE_ENV=development
+      - PORT=3011
+      - POSTGRES_HOST=compliance-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=compliance
+    depends_on:
+      - compliance-db
+
+  audit-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: audit
+    ports:
+      - '15442:5432'
+
+  audit-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/audit-service/main.js"]
+    ports:
+      - '3012:3012'
+    environment:
+      - NODE_ENV=development
+      - PORT=3012
+      - POSTGRES_HOST=audit-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=audit
+      - RABBITMQ_URI=amqp://guest:guest@rabbitmq:5672
+    depends_on:
+      - audit-db
+      - rabbitmq
+
+  loan-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: loan
+    ports:
+      - '15443:5432'
+
+  loan-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/loan-service/main.js"]
+    ports:
+      - '3013:3013'
+    environment:
+      - NODE_ENV=development
+      - PORT=3013
+      - POSTGRES_HOST=loan-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=loan
+      - RABBITMQ_URI=amqp://guest:guest@rabbitmq:5672
+    depends_on:
+      - loan-db
+      - rabbitmq
+
+  overdraft-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/overdraft-service/main.js"]
+    ports:
+      - '3016:3016'
+    environment:
+      - NODE_ENV=development
+      - PORT=3016
+      - POSTGRES_HOST=overdraft-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=overdraft
+    depends_on:
+      - overdraft-db
+
+  overdraft-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: overdraft
+    ports:
+      - '15447:5432'
+
+  wallet-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: wallet
+    ports:
+      - '15446:5432'
+
+  wallet-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/wallet-service/main.js"]
+    ports:
+      - '3015:3015'
+    environment:
+      - NODE_ENV=development
+      - PORT=3015
+      - POSTGRES_HOST=wallet-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=wallet
+      - ACCOUNTS_SERVICE_HOST=accounts-service
+      - ACCOUNTS_SERVICE_PORT=3005
+      - LEDGER_SERVICE_HOST=ledger-service
+      - LEDGER_SERVICE_PORT=3003
+      # CASH_GL_ACCOUNT_ID removed — auto-resolved by wallet-service from ledger
+      - QCOIN_DEPOSITS_GL_ACCOUNT_ID=22222222-2222-2222-2222-222222222222
+    depends_on:
+      - wallet-db
+      - accounts-service
+      - ledger-service
+
+  notification-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: notification
+    ports:
+      - '15448:5432'
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/apps/notification-service/main.js"]
+    ports:
+      - '3017:3017'
+    environment:
+      - NODE_ENV=development
+      - PORT=3017
+      - POSTGRES_HOST=notification-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=notification
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - SENDGRID_API_KEY=SG_placeholder
+      - MAIL_FROM_EMAIL=noreply@queensos.com
+      - MAIL_FROM_NAME=Queens OS
+    depends_on:
+      - notification-db
+
+volumes:
+  postgres_data:
+  redis_data:
+  batch_data:

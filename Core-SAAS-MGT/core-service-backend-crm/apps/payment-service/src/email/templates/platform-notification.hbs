@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header { background: #0f9d58; color: white; padding: 30px; text-align: center; }
+    .header h1 { margin: 0; font-size: 24px; }
+    .header p { margin: 8px 0 0; opacity: 0.9; }
+    .body { padding: 30px; }
+    .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+    .detail-row:last-child { border-bottom: none; }
+    .label { color: #666; font-weight: 500; }
+    .value { font-weight: 600; color: #333; }
+    .highlight-row { background: #e8f5e9; padding: 15px; border-radius: 6px; margin-top: 15px; }
+    .highlight-row .detail-row { border-bottom: none; padding: 5px 0; }
+    .highlight-row .value { color: #0f9d58; font-size: 18px; }
+    .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; border-top: 1px solid #eee; }
+    .badge { display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 12px; font-size: 12px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Split Payment Commission Alert</h1>
+      <p>Trip #{{tripId}}</p>
+      <div class="badge">Commission Credited</div>
+    </div>
+    <div class="body">
+      <p>Hello Platform Owner,</p>
+      <p>A new trip payment has been successfully completed, and your platform commission has been allocated. Here are the split details:</p>
+
+      <div class="detail-row">
+        <span class="label">Reference</span>
+        <span class="value">{{reference}}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Payment Method</span>
+        <span class="value">{{paymentMethod}}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Total Fare</span>
+        <span class="value">{{currency}} {{amount}}</span>
+      </div>
+
+      <div class="highlight-row">
+        <div class="detail-row">
+          <span class="label">Platform Commission (10%)</span>
+          <span class="value">{{currency}} {{platformCommission}}</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <h3>Other Splits</h3>
+        <div class="detail-row">
+          <span class="label">Driver Payout</span>
+          <span class="value">{{currency}} {{driverPayout}}</span>
+        </div>
+        {{#if partnerCommission}}
+        <div class="detail-row">
+          <span class="label">Partner Commission</span>
+          <span class="value">{{currency}} {{partnerCommission}}</span>
+        </div>
+        {{/if}}
+        <div class="detail-row">
+          <span class="label">Gateway Fee</span>
+          <span class="value">{{currency}} {{gatewayFee}}</span>
+        </div>
+      </div>
+
+      <p style="margin-top: 25px; color: #666; font-size: 13px;">
+        If this transaction happened via Paystack, disbursement has been automatically managed by Paystack's split payment system directly to the driver's and partner's registered subaccounts.
+      </p>
+    </div>
+    <div class="footer">
+      <p>Queens OS &copy; {{year}}. All rights reserved.</p>
+      <p>This is an automated message, please do not reply.</p>
+    </div>
+  </div>
+</body>
+</html>

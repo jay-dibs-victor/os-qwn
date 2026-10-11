@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  ride-service:
+    build:
+      context: ..
+      dockerfile: Dockerfile.ride
+    environment:
+      PORT: ${RIDE_PORT:-12002}
+      MONGO_URI: ${MONGO_URI:-mongodb://mongodb:27017/taxi_service}
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://rabbitmq:5672}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      SECRET: ${SECRET:-dev_secret}
+    ports:
+      - "${RIDE_PORT:-12002}:${RIDE_PORT:-12002}"
+    networks:
+      - taxi-net
+
+networks:
+  taxi-net:
+    external: true
+    name: taxi-net

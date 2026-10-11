@@ -1,0 +1,50 @@
+/* 
+ * ManageAdmins — GoomTaxi Security & Governance Styles
+ */
+
+.admins-view .avatar-sm {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
+  transition: var(--transition-smooth);
+}
+
+.admins-view .table-custom td {
+  padding: 1.25rem 1.5rem !important;
+}
+
+.modal-overlay {
+  background: rgba(15, 23, 42, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.btn-role-select {
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0,0,0,0.1);
+  background: white;
+  transition: var(--transition-smooth);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-role-select:hover {
+  background: rgba(30, 64, 175, 0.05);
+  border-color: var(--color-primary-light);
+  transform: translateX(5px);
+}
+
+.btn-role-select.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.badge-level {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.4em 0.8em;
+}

@@ -1,0 +1,911 @@
+<style type="text/css">
+.header-fixed {
+  background-color:#fff;
+  box-shadow:0 1px 1px #ccc;
+  padding: 10px 10px;
+  height: 50px;
+  color: #ffffff;
+  box-sizing: border-box;
+  top:-100px;
+
+  -webkit-transition:top 0.3s;
+  transition:top 0.3s;
+}
+
+.header-fixed .header-limiter {
+  max-width: 1200px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/*  The header placeholder. It is displayed when the header is fixed to the top of the
+  browser window, in order to prevent the content of the page from jumping up. */
+
+.header-fixed-placeholder{
+  height: 80px;
+  display: none;
+}
+
+/* Logo */
+
+.header-fixed .header-limiter h1 {
+  float: left;
+  font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+  line-height: 40px;
+  margin: 0;
+}
+
+.header-fixed .header-limiter h1 span {
+  color: #5383d3;
+}
+
+/* The navigation links */
+
+.header-fixed .header-limiter a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.header-fixed .header-limiter nav {
+  font:16px Arial, Helvetica, sans-serif;
+  line-height: 40px;
+  float: right;
+}
+
+.header-fixed .header-limiter nav a{
+  display: inline-block;
+  padding: 0 5px;
+  text-decoration:none;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.header-fixed .header-limiter nav a:hover{
+  opacity: 1;
+}
+
+.header-fixed .header-limiter nav a.selected {
+  color: #608bd2;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Fixed version of the header */
+
+body.fixed .header-fixed {
+  padding: 10px 40px;
+  height: 50px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+body.fixed .header-fixed-placeholder {
+  display: block;
+}
+
+body.fixed .header-fixed .header-limiter h1 {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+body.fixed .header-fixed .header-limiter nav {
+  line-height: 28px;
+  font-size: 13px;
+}
+
+
+/* Making the header responsive */
+
+@media all and (max-width: 600px) {
+
+  .header-fixed {
+    padding: 20px 0;
+    height: 75px;
+  }
+
+  .header-fixed .header-limiter h1 {
+    float: none;
+    margin: -8px 0 10px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .header-fixed .header-limiter nav {
+    line-height: 1;
+    float:none;
+  }
+
+  .header-fixed .header-limiter nav a {
+    font-size: 13px;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    .footer-container{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+   background-color: #efefef;
+  color: #333;
+  text-align: center;
+  height: 38px;
+  padding-top: 14px;
+  font-weight: 600;
+  margin-top: 20px;
+ 
+  text-align: center;
+  z-index:9999999;
+  
+  }
+
+
+  .footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+   margin: 0px auto;
+   color:#333;
+
+}
+</style>
+
+<style type="text/css">
+.container.is-login {
+   background-color: #00bcd4;
+}
+ .container.is-amnesia {
+   background-color: #757575;
+}
+ .container.is-register {
+   background-color: #ffea00;
+}
+ .card {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   overflow: hidden;
+   background-color: #fff;
+   border: 0;
+   border-radius: 2px;
+}
+ .card--login, .card--amnesia, .card--register {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   z-index: 1;
+   margin: auto;
+   width: 100%;
+   max-width: 320px;
+   opacity: 0;
+   transform: scale(0) translate(-50%,-50%);
+   transform-origin: 0% 0% 0;
+   transition: all .42s cubic-bezier(0.4,0,0.2,1) 0s;
+}
+ .card--login.is-active, .card--amnesia.is-active, .card--register.is-active {
+   opacity: 1;
+   transform: scale(1) translate(-50%,-50%);
+   transition-delay: .35s;
+}
+ .card--amnesia {
+   max-width: 400px;
+}
+ .card__title {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: flex-start;
+   padding: 16px;
+   color: currentColor;
+   font-weight: 400;
+}
+ .card__title--bottom {
+   justify-content: flex-end;
+}
+ .card__title--center {
+   align-items: center;
+}
+ .card__title-text {
+   color: inherit;
+   font-size: 24px;
+   line-height: 24px;
+}
+ .card__title-sub-text {
+   color: inherit;
+   font-size: 14px;
+   line-height: 20px;
+   opacity: .56;
+}
+ .card__content {
+   padding: 16px;
+   color: inherit;
+   line-height: 20px;
+   font-size: 14px;
+}
+ .card__content > :first-child {
+   margin-top: 0;
+}
+ .card__content > :last-child {
+   margin-bottom: 0;
+}
+ .card__action {
+   display: flex;
+   padding: 8px;
+   flex-direction: row;
+   justify-content: space-between;
+}
+ .card__action + .card__action {
+   padding-top: 0;
+}
+ .card__action--center {
+   justify-content: center;
+}
+ .card__action--center .btn + .btn {
+   margin-left: 8px;
+}
+ .inputfield {
+   position: relative;
+   padding: 20px 0;
+}
+ .inputfield__input {
+   display: block;
+   padding: 4px 0;
+   width: 100%;
+   color: #757575;
+   font-size: 16px;
+   line-height: 21px;
+   background-color: transparent;
+   border: 0 solid rgba(0,0,0,0.12);
+   border-bottom-width: 1px;
+   outline: none;
+}
+ .inputfield__label {
+   position: absolute;
+   top: 24px;
+   left: 0;
+   display: block;
+   color: #757575;
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 21px;
+   pointer-events: none;
+   transition: all .28s cubic-bezier(0.4,0,0.2,1) 0s;
+}
+ .inputfield.is-dirty .inputfield__label, .inputfield__input:focus ~ .inputfield__label {
+   top: 0;
+   font-size: 12px;
+   font-weight: 500;
+   transition-duration: .14s;
+}
+ .inputfield.is-dirty .inputfield__label {
+   color: #bdbdbd;
+}
+ .inputfield__input:focus ~ .inputfield__label {
+   color: #00bcd4;
+}
+ .required {
+   color: #f44336 !important;
+   font-style: normal;
+}
+ .inputfield__underline {
+   position: absolute;
+   bottom: 20px;
+   left: 50%;
+   right: 50%;
+   height: 2px;
+   background-color: #00bcd4;
+   transition: all .28s cubic-bezier(0.4,0,0.2,1) 0s;
+}
+ .inputfield__input:focus ~ .inputfield__underline {
+   left: 0%;
+   right: 0%;
+}
+ .btn {
+   position: relative;
+   display: inline-block;
+   padding: 0 8px;
+   color: currentColor;
+   line-height: 36px;
+   font-family: inherit;
+   font-size: 16px;
+   font-weight: 500;
+   text-align: center;
+   text-transform: uppercase;
+   background-color: #fff;
+   background-position: 50% 50%;
+   background-repeat: no-repeat;
+   background-size: 10% 10%;
+   border: 0;
+   border-radius: 2px;
+   outline: 0;
+   outline-offset: 0;
+   box-shadow: 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0);
+   transition: background-color .28s cubic-bezier(0.4,0,0.2,1), box-shadow .28s cubic-bezier(0.4,0,0.2,1), outline-offset .28s cubic-bezier(0.4,0,0.2,1);
+}
+ .btn:hover {
+   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.14);
+}
+ .btn:focus {
+   outline: thin dotted;
+   outline: 1px auto -webkit-focus-ring-color;
+   outline-offset: -2px;
+}
+ .btn:focus:active, .btn:active {
+   box-shadow: 0 6px 10px 0 rgba(0,0,0,0.12), 0 1px 18px 0 rgba(0,0,0,0.14), 0 3px 5px -1px rgba(0,0,0,0.2);
+}
+ .btn.is-animating {
+   background-image: radial-gradient(circle,rgba(255,255,255,0.26) 10%,rgba(255,255,255,0) 11%);
+   animation: btnRipple .35s forwards linear;
+}
+ .btn--block {
+   width: 100%;
+   text-align: center;
+}
+ .btn--block + .btn--block {
+   margin-top: 8px;
+}
+ .btn--primary {
+   color: #fff;
+   background-color: #00bcd4;
+}
+ .btn--primary.is-animating {
+   background-image: radial-gradient(circle,rgba(255,255,255,0.26) 10%,rgba(255,255,255,0) 11%);
+}
+ .btn--secondry {
+   color: #424242;
+   background-color: #ffea00;
+}
+ .btn--secondry.is-animating {
+   background-image: radial-gradient(circle,rgba(66,66,66,0.26) 10%,rgba(66,66,66,0) 11%);
+}
+ .btn--flat {
+   color: #424242;
+   background-color: rgba(66,66,66,0);
+   outline: 0 !important;
+   box-shadow: 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0) !important;
+   box-shadow: 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0);
+}
+ .btn--flat:hover, .btn--flat:focus, .btn--flat:focus:active, .btn--flat:active {
+   background-color: rgba(66,66,66,0.12);
+}
+ .btn--flat.is-animating {
+   background-image: radial-gradient(circle,rgba(66,66,66,0.26) 10%,rgba(66,66,66,0) 11%);
+}
+ .btn--flat.btn--primary {
+   color: #00bcd4;
+   background-color: rgba(0,188,212,0);
+}
+ .btn--flat.btn--primary:hover, .btn--flat.btn--primary:focus, .btn--flat.btn--primary:focus:active, .btn--flat.btn--primary:active {
+   background-color: rgba(0,188,212,0.12);
+}
+ .btn--flat.btn--primary.is-animating {
+   background-image: radial-gradient(circle,rgba(0,188,212,0.26) 10%,rgba(0,188,212,0) 11%);
+}
+ .btn--flat.btn--secondry {
+   color: #ffea00;
+   background-color: rgba(255,234,0,0);
+}
+ .btn--flat.btn--secondry:hover, .btn--flat.btn--secondry:focus, .btn--flat.btn--secondry:focus:active, .btn--flat.btn--secondry:active {
+   background-color: rgba(255,234,0,0.12);
+}
+ .btn--flat.btn--secondry.is-animating {
+   background-image: radial-gradient(circle,rgba(255,234,0,0.26) 10%,rgba(255,234,0,0) 11%);
+}
+ @keyframes btnRipple {
+   84% {
+     background-size: 1000% 1000%;
+  }
+   100% {
+     background-size: 1100% 1100%;
+  }
+}
+ .toggle {
+   position: relative;
+   display: inline-flex;
+}
+ .toggle--block {
+   display: flex;
+   padding-top: 16px;
+   padding-bottom: 16px;
+}
+ .toggle--center {
+   justify-content: center;
+}
+ .toggle__input {
+   position: absolute;
+   z-index: -1;
+   height: 0;
+   width: 0;
+   appearance: none;
+   pointer-events: none;
+   border: 0 !important;
+   opacity: 0;
+}
+ .toggle__label {
+   order: 1;
+   font-size: 16px;
+   font-weight: 500;
+}
+ .toggle__checkbox {
+   position: relative;
+   z-index: 1;
+   display: inline-flex;
+   order: 0;
+   align-self: center;
+   margin: auto;
+   margin-left: 8px;
+   margin-right: 16px;
+   height: 18px;
+   width: 18px;
+   background-color: #fff;
+   border: 2px solid #616161;
+   border-radius: 2px;
+   cursor: pointer;
+   transition: all .28s ease-in-out;
+}
+ .toggle__checkbox::after {
+   position: absolute;
+   top: -1px;
+   left: -1px;
+   z-index: -1;
+   content: '';
+   height: 48px;
+   width: 48px;
+   background-color: rgba(66,66,66,0.12);
+   border-radius: 50%;
+   opacity: 0;
+   pointer-events: none;
+   perspective: 18px;
+   perspective-origin: 9px 9px;
+   transform-origin: 9px 9px 0;
+   transform: scale(0) translate(-16px,-16px);
+}
+ .toggle__checkbox.is-animating::after {
+   animation: checkBoxRipple .42s linear forwards;
+}
+ .toggle__input:checked ~ .toggle__checkbox {
+   background-color: #00bcd4;
+   border-color: #00bcd4;
+}
+ .toggle__input:checked ~ .toggle__checkbox::after {
+   background-color: rgba(0,188,212,0.26);
+}
+ .toggle__checkbox-mark {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   height: 16px;
+   width: 16px;
+   margin-top: -8px;
+   margin-left: -8px;
+   fill: #fff;
+   perspective: 8px;
+   perspective-origin: 8px 8px;
+   transform-origin: 8px 8px 0;
+   transform: scale(0);
+   transition: all .28s cubic-bezier(0.4,0,0.2,1);
+}
+ .toggle__input:checked ~ .toggle__checkbox > .toggle__checkbox-mark {
+   transform: scale(1);
+}
+ @keyframes checkBoxRipple {
+   84% {
+     opacity: 1;
+     transform: scale(1) translate(-16px,-16px);
+  }
+   100% {
+     opacity: 0;
+     transform: scale(1.1) translate(-16px,-16px);
+  }
+}
+ .shadow-0dp {
+   box-shadow: 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0);
+}
+ .shadow-2dp {
+   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.14);
+}
+ .shadow-3dp {
+   box-shadow: 0 3px 4px 0 rgba(0,0,0,0.12), 0 3px 3px -2px rgba(0,0,0,0.2), 0 1px 8px 0 rgba(0,0,0,0.14);
+}
+ .shadow-4dp {
+   box-shadow: 0 4px 5px 0 rgba(0,0,0,0.12), 0 1px 10px 0 rgba(0,0,0,0.14), 0 2px 4px -1px rgba(0,0,0,0.2);
+}
+ .shadow-6dp {
+   box-shadow: 0 6px 10px 0 rgba(0,0,0,0.12), 0 1px 18px 0 rgba(0,0,0,0.14), 0 3px 5px -1px rgba(0,0,0,0.2);
+}
+ .shadow-8dp {
+   box-shadow: 0 8px 10px 1px rgba(0,0,0,0.12), 0 3px 14px 2px rgba(0,0,0,0.14), 0 5px 5px -3px rgba(0,0,0,0.2);
+}
+ .shadow-16dp {
+   box-shadow: 0 16px 24px 2px rgba(0,0,0,0.12), 0 6px 30px 5px rgba(0,0,0,0.14), 0 8px 10px -5px rgba(0,0,0,0.2);
+}
+ .shadow-24dp {
+   box-shadow: 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.14), 0 24px 38px 3px rgba(0,0,0,0.2);
+}
+ .sr-only {
+   position: absolute;
+   overflow: hidden;
+   padding: 0;
+   height: 1px;
+   width: 1px;
+   clip: rect(0 0 0 0);
+   clip: rect(0,0,0,0);
+   border: 0;
+}
+ .text-center {
+   text-align: center;
+}
+ 
+</style>
+
+
+<style type="text/css">
+  .success-checkmark-verified {
+   width: 80px;
+   height: 115px;
+   margin: 0 auto;
+   display:none;
+  
+}
+ .success-checkmark-verified .check-icon {
+   width: 80px;
+   height: 80px;
+   position: relative;
+   border-radius: 50%;
+   box-sizing: content-box;
+   border: 4px solid #4caf50;
+}
+ .success-checkmark-verified .check-icon::before {
+   top: 3px;
+   left: -2px;
+   width: 30px;
+   transform-origin: 100% 50%;
+   border-radius: 100px 0 0 100px;
+}
+ .success-checkmark-verified .check-icon::after {
+   top: 0;
+   left: 30px;
+   width: 60px;
+   transform-origin: 0 50%;
+   border-radius: 0 100px 100px 0;
+   animation: rotate-circle 4.25s ease-in;
+}
+ .success-checkmark-verified .check-icon::before, .success-checkmark-verified .check-icon::after {
+   content: '';
+   height: 100px;
+   position: absolute;
+   background: #fff;
+   transform: rotate(-45deg);
+}
+ .success-checkmark-verified .check-icon .icon-line {
+   height: 5px;
+   background-color: #4caf50;
+   display: block;
+   border-radius: 2px;
+   position: absolute;
+   z-index: 10;
+}
+ .success-checkmark-verified .check-icon .icon-line.line-tip {
+   top: 46px;
+   left: 14px;
+   width: 25px;
+   transform: rotate(45deg);
+   animation: icon-line-tip 0.75s;
+}
+ .success-checkmark-verified .check-icon .icon-line.line-long {
+   top: 38px;
+   right: 8px;
+   width: 47px;
+   transform: rotate(-45deg);
+   animation: icon-line-long 0.75s;
+}
+ .success-checkmark-verified .check-icon .icon-circle {
+   top: -4px;
+   left: -4px;
+   z-index: 10;
+   width: 80px;
+   height: 80px;
+   border-radius: 50%;
+   position: absolute;
+   box-sizing: content-box;
+   border: 4px solid rgba(76, 175, 80, .5);
+}
+ .success-checkmark-verified .check-icon .icon-fix {
+   top: 8px;
+   width: 5px;
+   left: 26px;
+   z-index: 1;
+   height: 85px;
+   position: absolute;
+   transform: rotate(-45deg);
+   background-color: #fff;
+}
+ @keyframes rotate-circle {
+   0% {
+     transform: rotate(-45deg);
+  }
+   5% {
+     transform: rotate(-45deg);
+  }
+   12% {
+     transform: rotate(-405deg);
+  }
+   100% {
+     transform: rotate(-405deg);
+  }
+}
+ @keyframes icon-line-tip {
+   0% {
+     width: 0;
+     left: 1px;
+     top: 19px;
+  }
+   54% {
+     width: 0;
+     left: 1px;
+     top: 19px;
+  }
+   70% {
+     width: 50px;
+     left: -8px;
+     top: 37px;
+  }
+   84% {
+     width: 17px;
+     left: 21px;
+     top: 48px;
+  }
+   100% {
+     width: 25px;
+     left: 14px;
+     top: 45px;
+  }
+}
+ @keyframes icon-line-long {
+   0% {
+     width: 0;
+     right: 46px;
+     top: 54px;
+  }
+   65% {
+     width: 0;
+     right: 46px;
+     top: 54px;
+  }
+   84% {
+     width: 55px;
+     right: 0px;
+     top: 35px;
+  }
+   100% {
+     width: 47px;
+     right: 8px;
+     top: 38px;
+  }
+}
+ 
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  border: 1px dotted lightgray;
+  padding: .5em;
+  margin-top: 0;
+}
+
+img { 
+  display: block;
+  margin: auto;
+}
+
+p {
+  padding: 0 5px;
+  text-align: justify;
+  margin-bottom: 5px;
+}
+
+.bolddetail {
+  font-size: .85em;
+  font-weight: bold;
+  margin-top: 5px ;
+  line-height: 90%;
+  text-indent: 20px;
+}
+
+
+h1 {
+  margin: 0;
+}
+
+
+article { 
+  width: 30%;
+   margin: 1%;
+   display: block;
+   border: 1px solid lightblue;
+  /*float: left;*/
+  margin:50px auto;
+}
+
+.clearfixed:after {
+  content="";
+  display: table;
+  clear: both;
+}
+
+#banner {
+  background: darkgray;
+  color: yellow;
+  margin: 0;
+  padding: 8px;
+  text-align: left;
+}
+
+.headers {
+  font-size: 1.25em;
+  text-indent: 15px;  
+} 
+
+</style>
+
+
+<header class="header-fixed">
+
+  <div class="header-limiter">
+
+    <h1><img src="./QueensLogos-02.png" /></h1>
+
+    
+
+  </div>
+
+</header>
+
+
+<div class="success-checkmark-verified" id="success-mark">
+  <div class="check-icon">
+    <span class="icon-line line-tip"></span>
+    <span class="icon-line line-long"></span>
+    <div class="icon-circle"></div>
+    <div class="icon-fix"></div>
+  </div>
+  <h6>Password reset successful</h6>
+ 
+</div>
+
+
+
+<div class="panel-x" id="reset-form">
+
+  <div class="container is-login" id="mainContainer">
+  <div class="card card--login shadow-2dp is-active" id="logInForm">
+    <div class="card__content">
+        <div id="msg"></div>
+      <div class="inputfield">
+        <input id="password" class="inputfield__input" type="password" />
+        <label class="inputfield__label">Password</label>
+        <span class="inputfield__underline"></span>
+      </div>
+      <div class="inputfield">
+        <input id="confirm-password" class="inputfield__input" type="password" />
+        <label class="inputfield__label">ConfirmPassword</label>
+        <span class="inputfield__underline"></span>
+      </div>
+
+      
+
+    </div>
+    <div class="card__action">
+      <button id="reset" class="btn btn--primary btn--block" type="button">
+        Reset
+      </button>
+    </div>
+   
+  </div>
+
+  
+
+  
+</div>
+</div>
+
+
+<div class="footer-container" >
+    <p class="footer" style="margin: 0px auto">Copyright &copy; Queens App 2019. All Rights Reserved.</p>
+  </div>
+
+<script type="text/javascript">
+    var linkUrl='http://localhost:12000/api/v1/auth/resetpassword';
+    var msgg = document.getElementById('msg');
+    triggerSubmit();
+    function triggerSubmit(){
+      var reset = document.getElementById('reset');
+      reset.addEventListener('click', function(e){
+        e.preventDefault();
+        launchSubmit();
+      })
+    }
+
+
+    function launchSubmit(){
+      let password = document.getElementById('password').value;
+      let resetForm = document.getElementById('reset-form');
+      let confirmPassword = document.getElementById('confirm-password').value;
+      const successAnimationStart = document.getElementById("success-mark")
+      if (!password) {
+         msgg.innerHTML='Password is required';
+
+         setTimeout(function (){ msgg.innerHTML='';},6000)
+      }
+
+      console.log('working code')
+      
+
+      const credentials = {
+        password,
+        confirmPassword
+      };
+
+      fetch(linkUrl, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        mode: 'cors',
+        body: JSON.stringify(credentials),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(JSON.stringify(data))
+          if (data.status=='ok') {
+           resetForm.style.display='none';
+              setTimeout(function () {
+                 successAnimationStart.style.display="block"
+                 
+              }, 10);
+
+              setTimeout(function(){
+                  location.replace("{{DRIVER_APP_URL}}/"); //back to login
+                },5000)
+          } else {
+            
+            msgg.innerHTML='SOME ERROR OCCURED'
+            
+          }
+        })
+        .catch(error => {
+          throw error;
+        });
+
+    }
+</script>
+

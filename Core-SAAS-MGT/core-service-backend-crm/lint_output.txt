@@ -1,0 +1,118 @@
+
+> BankingService@0.0.1 lint
+> eslint "{src,apps,libs,test}/**/*.ts" --fix
+
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/api-gateway/test/app.e2e-spec.ts
+  19:20  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/approval-service/src/approval-service.service.ts
+  105:7   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  112:11  error    Unsafe assignment of an `any` value                                                                                                                                 @typescript-eslint/no-unsafe-assignment
+  127:9   error    Unsafe assignment of an `any` value                                                                                                                                 @typescript-eslint/no-unsafe-assignment
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/approval-service/src/seed.service.ts
+  52:53  warning  Unsafe argument of type `any` assigned to a parameter of type `ApprovalConfig`  @typescript-eslint/no-unsafe-argument
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/auth-service/src/auth-service.service.ts
+  84:13  error  Unsafe assignment of an `any` value  @typescript-eslint/no-unsafe-assignment
+  91:7   error  Unsafe assignment of an `any` value  @typescript-eslint/no-unsafe-assignment
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/auth-service/test/app.e2e-spec.ts
+  19:20  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/batch-service/src/batch-service.controller.spec.ts
+  21:14  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/batch-service/src/main.ts
+  8:1  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/batch-service/test/app.e2e-spec.ts
+  19:5   error  Unsafe return of a value of type error                          @typescript-eslint/no-unsafe-return
+  19:12  error  Unsafe call of a type that could not be resolved                @typescript-eslint/no-unsafe-call
+  19:12  error  Unsafe call of a type that could not be resolved                @typescript-eslint/no-unsafe-call
+  19:12  error  Unsafe call of a type that could not be resolved                @typescript-eslint/no-unsafe-call
+  20:8   error  Unsafe member access .get on a type that cannot be resolved     @typescript-eslint/no-unsafe-member-access
+  21:8   error  Unsafe member access .expect on a type that cannot be resolved  @typescript-eslint/no-unsafe-member-access
+  22:8   error  Unsafe member access .expect on a type that cannot be resolved  @typescript-eslint/no-unsafe-member-access
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/payment-service/src/payment-service.service.ts
+  159:13  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  169:11  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  244:9   warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/payment-service/test/payment.e2e-spec.ts
+  103:20  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  121:20  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  135:20  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/rbac-service/src/rbac-service.controller.ts
+  89:58  warning  Unsafe argument of type `any` assigned to a parameter of type `AbacContext`  @typescript-eslint/no-unsafe-argument
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/rbac-service/src/rbac-service.service.ts
+  118:47  warning  Unsafe argument of type `any` assigned to a parameter of type `Record<string, any>`  @typescript-eslint/no-unsafe-argument
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/rbac-service/src/seed.service.ts
+  52:62  warning  Unsafe argument of type `any` assigned to a parameter of type `Permission`  @typescript-eslint/no-unsafe-argument
+  59:5   error    Unsafe return of a value of type `any[]`                                    @typescript-eslint/no-unsafe-return
+  68:41  warning  Unsafe argument of type `any` assigned to a parameter of type `Role`        @typescript-eslint/no-unsafe-argument
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/reversal-service/src/main.ts
+  8:1  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/reversal-service/src/reversal-service.controller.spec.ts
+  21:14  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/apps/reversal-service/test/app.e2e-spec.ts
+  19:5   error  Unsafe return of a value of type error                          @typescript-eslint/no-unsafe-return
+  19:12  error  Unsafe call of a type that could not be resolved                @typescript-eslint/no-unsafe-call
+  19:12  error  Unsafe call of a type that could not be resolved                @typescript-eslint/no-unsafe-call
+  19:12  error  Unsafe call of a type that could not be resolved                @typescript-eslint/no-unsafe-call
+  20:8   error  Unsafe member access .get on a type that cannot be resolved     @typescript-eslint/no-unsafe-member-access
+  21:8   error  Unsafe member access .expect on a type that cannot be resolved  @typescript-eslint/no-unsafe-member-access
+  22:8   error  Unsafe member access .expect on a type that cannot be resolved  @typescript-eslint/no-unsafe-member-access
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/test/e2e/auth-rbac.e2e-spec.ts
+   6:7   error  'accessToken' is defined but never used        @typescript-eslint/no-unused-vars
+   7:7   error  'userId' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  19:26  error  Unsafe member access .id on an `any` value     @typescript-eslint/no-unsafe-member-access
+  20:5   error  Unsafe assignment of an `any` value            @typescript-eslint/no-unsafe-assignment
+  20:28  error  Unsafe member access .id on an `any` value     @typescript-eslint/no-unsafe-member-access
+  24:11  error  'response' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/test1/Desktop/DemoProjects/Days-back/BankingService/test/e2e/comprehensive-flow.e2e-spec.ts
+   16:7   error  'adminToken' is defined but never used                 @typescript-eslint/no-unused-vars
+   37:5   error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+   37:25  error  Unsafe member access .id on an `any` value             @typescript-eslint/no-unsafe-member-access
+   47:5   error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+   47:27  error  Unsafe member access .id on an `any` value             @typescript-eslint/no-unsafe-member-access
+   54:5   error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+   54:34  error  Unsafe member access .accessToken on an `any` value    @typescript-eslint/no-unsafe-member-access
+   60:5   error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+   60:38  error  Unsafe member access .accessToken on an `any` value    @typescript-eslint/no-unsafe-member-access
+   78:22  error  Unsafe member access .response on an `any` value       @typescript-eslint/no-unsafe-member-access
+   87:13  error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+   87:25  error  Unsafe call of an `any` typed value                    @typescript-eslint/no-unsafe-call
+   87:39  error  Unsafe member access .find on an `any` value           @typescript-eslint/no-unsafe-member-access
+   87:53  error  Unsafe member access .name on an `any` value           @typescript-eslint/no-unsafe-member-access
+   92:29  error  Unsafe member access .id on an `any` value             @typescript-eslint/no-unsafe-member-access
+   96:29  error  Unsafe member access .id on an `any` value             @typescript-eslint/no-unsafe-member-access
+  105:7   error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+  105:36  error  Unsafe member access .accessToken on an `any` value    @typescript-eslint/no-unsafe-member-access
+  111:7   error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+  111:40  error  Unsafe member access .accessToken on an `any` value    @typescript-eslint/no-unsafe-member-access
+  134:28  error  Unsafe member access .message on an `any` value        @typescript-eslint/no-unsafe-member-access
+  135:28  error  Unsafe member access .requestId on an `any` value      @typescript-eslint/no-unsafe-member-access
+  136:7   error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+  136:33  error  Unsafe member access .requestId on an `any` value      @typescript-eslint/no-unsafe-member-access
+  147:13  error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+  147:23  error  Unsafe call of an `any` typed value                    @typescript-eslint/no-unsafe-call
+  147:37  error  Unsafe member access .find on an `any` value           @typescript-eslint/no-unsafe-member-access
+  147:51  error  Unsafe member access .id on an `any` value             @typescript-eslint/no-unsafe-member-access
+  149:22  error  Unsafe member access .status on an `any` value         @typescript-eslint/no-unsafe-member-access
+  150:22  error  Unsafe member access .initiatorId on an `any` value    @typescript-eslint/no-unsafe-member-access
+  169:28  error  Unsafe member access .status on an `any` value         @typescript-eslint/no-unsafe-member-access
+  182:28  error  Unsafe member access .transactionId on an `any` value  @typescript-eslint/no-unsafe-member-access
+
+✖ 75 problems (59 errors, 16 warnings)
+

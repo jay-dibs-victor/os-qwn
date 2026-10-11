@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build:
+      context: ..
+      dockerfile: Dockerfile.gateway
+    environment:
+      PORT: ${GATEWAY_PORT:-12000}
+      AUTH_SERVICE_URL: ${AUTH_SERVICE_URL:-http://auth-service:12001}
+      RIDE_SERVICE_URL: ${RIDE_SERVICE_URL:-http://ride-service:12002}
+      FLIGHT_INVENTORY_URL: ${FLIGHT_INVENTORY_URL:-http://flight-inventory-service:12003}
+      FLIGHT_BOOKING_URL: ${FLIGHT_BOOKING_URL:-http://flight-booking-service:12004}
+      SHIPPING_SERVICE_URL: ${SHIPPING_SERVICE_URL:-http://shipping-service:12006}
+      AI_OS_URL: ${AI_OS_URL:-http://ai-os:12010}
+    ports:
+      - "${GATEWAY_PORT:-12000}:${GATEWAY_PORT:-12000}"
+    networks:
+      - taxi-net
+
+networks:
+  taxi-net:
+    external: true
+    name: taxi-net

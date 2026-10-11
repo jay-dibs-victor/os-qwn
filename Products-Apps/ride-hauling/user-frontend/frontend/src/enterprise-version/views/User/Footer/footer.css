@@ -1,0 +1,44 @@
+
+/* ═══════════════════════════════════════════════════
+   footer.css — Queens User App Footer
+   Dark / Gold Theme
+═══════════════════════════════════════════════════ */
+
+.footer-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--color-surface, #121212);
+  color: var(--color-text-muted, #A1A1AA);
+  text-align: center;
+  height: 38px;
+  padding-top: 14px;
+  font-weight: 600;
+  margin-top: 20px;
+  z-index: 9999999;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer {
+  background: var(--color-bg-secondary, #080808);
+  color: var(--color-text-muted, #A1A1AA);
+  padding: 60px 0 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer h4,
+.footer h6 {
+  color: var(--color-text-primary, #FFFFFF);
+  font-weight: 800;
+}
+
+.footer a {
+  color: var(--color-text-muted, #A1A1AA);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: var(--color-primary, #FFB800);
+}

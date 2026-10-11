@@ -1,0 +1,112 @@
+.history-list-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+}
+
+.history-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 25px;
+    border: 1px solid #eeeeee;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.history-card:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    border-color: var(--color-primary, #FFB800);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.trip-date {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.trip-fare {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #FFB800;
+}
+
+.location-summary {
+    position: relative;
+    padding-left: 10px;
+}
+
+.point-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.point-dot.pickup {
+    background: #2ed573;
+    box-shadow: 0 0 10px rgba(46,213,115,0.2);
+}
+
+.point-dot.dropoff {
+    background: #ff4757;
+    box-shadow: 0 0 10px rgba(255,71,87,0.2);
+}
+
+.address-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4b5563;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mini-avatar {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,184,0,0.1);
+    color: #FFB800;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-right: 12px;
+}
+
+.rider-info {
+    color: #1f2937;
+}
+
+.status-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-tag.completed { background: rgba(46, 213, 115, 0.1); color: #2ed573; }
+.status-tag.cancelled { background: rgba(255, 71, 87, 0.1); color: #ff4757; }
+.status-tag.pending { background: rgba(255, 184, 0, 0.1); color: #FFB800; }
+
+@media (max-width: 768px) {
+    .history-list-container {
+        padding: 20px;
+    }
+    .history-grid {
+        grid-template-columns: 1fr;
+    }
+}

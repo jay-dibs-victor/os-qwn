@@ -1,0 +1,17 @@
+server/auth-service/mongo_api/controllers/driver_controller.ts(3,38): error TS2307: Cannot find module '../services/sos_service_drivers' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(21,21): error TS2307: Cannot find module './cars_api' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(34,37): error TS2307: Cannot find module './multi_payment_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(85,29): error TS2307: Cannot find module './cars_services' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(86,43): error TS2307: Cannot find module './faqs_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(87,55): error TS2307: Cannot find module './feedback_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(88,46): error TS2307: Cannot find module './sos_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(89,37): error TS2307: Cannot find module './gamification_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(90,33): error TS2307: Cannot find module './location_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(91,33): error TS2307: Cannot find module './currency_service' or its corresponding type declarations.
+server/auth-service/mongo_api/services/user_service.ts(92,38): error TS2307: Cannot find module './payment_router_service' or its corresponding type declarations.
+server/auth-service/mongo_api/tests/unit/services/gamification_service.test.ts(3,37): error TS2307: Cannot find module '../../../services/gamification_service' or its corresponding type declarations.
+server/auth-service/mongo_api/tests/unit/services/ride_service.test.ts(2,29): error TS2307: Cannot find module '../../../services/ride_service' or its corresponding type declarations.
+server/flight-booking-service/services/LotteryCron.ts(1,18): error TS2307: Cannot find module 'node-cron' or its corresponding type declarations.
+server/ride-service/mongo_api/api/ride_routes.ts(63,22): error TS2339: Property 'settlePayment' does not exist on type 'typeof RideController'.
+server/ride-service/mongo_api/services/driver_services.ts(43,29): error TS2307: Cannot find module '../../shared/constants' or its corresponding type declarations.
+server/ride-service/mongo_api/services/multi_payment_service.ts(8,30): error TS2307: Cannot find module '../../shared/constants' or its corresponding type declarations.

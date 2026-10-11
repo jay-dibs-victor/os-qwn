@@ -1,0 +1,27 @@
+.ticket-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.empty-history i {
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.support-info strong {
+    color: var(--color-primary, #FFB800);
+}
+
+@media (max-width: 991px) {
+    .ticket-page-container {
+        padding: 20px;
+    }
+    .ticket-page-container .col-lg-5 {
+        margin-top: 40px;
+        margin-left: 0 !important;
+    }
+}

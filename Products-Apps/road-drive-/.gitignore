@@ -1,0 +1,20 @@
+# Ignore business and design documentation files
+bus onb/
+New folder/
+AGENTS.md
+DASHBOARD_UI_DESIGN.md
+DRIVER-MENU-FEATURES.md
+END_TO_END_FLOW.md
+IMPLEMENTATION_FEATURES.md
+IMPLEMENTATION.md
+TASK.md
+UBER_ONBOARDING_PLAN.md
+
+# General dependencies and build artifacts (Standard Practice)
+node_modules/
+dist/
+.vite/
+.DS_Store
+*.log
+.env
+.env.local

@@ -1,0 +1,56 @@
+process.env.PORT = '3000';
+process.env.RABBITMQ_URI = 'amqp://localhost:5672';
+process.env.AUTH_SERVICE_HOST = 'localhost';
+process.env.AUTH_SERVICE_PORT = '3001';
+process.env.RBAC_SERVICE_HOST = 'localhost';
+process.env.RBAC_SERVICE_PORT = '3002';
+process.env.APPROVAL_SERVICE_HOST = 'localhost';
+process.env.APPROVAL_SERVICE_PORT = '3003';
+process.env.LEDGER_SERVICE_HOST = 'localhost';
+process.env.LEDGER_SERVICE_PORT = '3004';
+process.env.ACCOUNTS_SERVICE_HOST = 'localhost';
+process.env.ACCOUNTS_SERVICE_PORT = '3005';
+process.env.PAYMENT_SERVICE_HOST = 'localhost';
+process.env.PAYMENT_SERVICE_PORT = '3006';
+process.env.BATCH_SERVICE_HOST = 'localhost';
+process.env.BATCH_SERVICE_PORT = '3007';
+process.env.REVERSAL_SERVICE_HOST = 'localhost';
+process.env.REVERSAL_SERVICE_PORT = '3008';
+process.env.RETRY_SERVICE_HOST = 'localhost';
+process.env.RETRY_SERVICE_PORT = '3009';
+process.env.KYC_SERVICE_HOST = 'localhost';
+process.env.KYC_SERVICE_PORT = '3010';
+process.env.COMPLIANCE_SERVICE_HOST = 'localhost';
+process.env.COMPLIANCE_SERVICE_PORT = '3011';
+process.env.AUDIT_SERVICE_HOST = 'localhost';
+process.env.AUDIT_SERVICE_PORT = '3012';
+process.env.LOAN_SERVICE_HOST = 'localhost';
+process.env.LOAN_SERVICE_PORT = '3013';
+process.env.CUSTOMER_SERVICE_HOST = 'localhost';
+process.env.CUSTOMER_SERVICE_PORT = '3014';
+process.env.WALLET_SERVICE_HOST = 'localhost';
+process.env.WALLET_SERVICE_PORT = '3015';
+process.env.OVERDRAFT_SERVICE_HOST = 'localhost';
+process.env.OVERDRAFT_SERVICE_PORT = '3016';
+
+process.env.POSTGRES_HOST = 'localhost';
+process.env.POSTGRES_PORT = '5432';
+process.env.POSTGRES_USER = 'postgres';
+process.env.POSTGRES_PASSWORD = 'postgres';
+process.env.POSTGRES_DB = 'test_db';
+
+process.env.CASH_GL_ACCOUNT_ID = 'gl-1100';
+process.env.QCOIN_DEPOSITS_GL_ACCOUNT_ID = 'gl-2100';
+process.env.RBAC_SERVICE_URL = 'http://localhost:3002';
+process.env.RABBITMQ_AUTH_QUEUE = 'auth';
+process.env.SENDGRID_API_KEY = 'test-key';
+process.env.MAIL_FROM_EMAIL = 'test@test.com';
+process.env.MAIL_FROM_NAME = 'test';
+process.env.GOOGLE_CLIENT_ID = 'test';
+process.env.GOOGLE_CLIENT_SECRET = 'test';
+process.env.GOOGLE_CALLBACK_URL = 'http://localhost:3001/auth/google/callback';
+process.env.GOOGLE_MOCK_ENABLED = 'true';
+process.env.FRONTEND_URL = 'http://localhost:3000';
+process.env.UPLOAD_PROVIDER = 'local';
+
+// pg is mocked via moduleNameMapper -> __mocks__/pg.js

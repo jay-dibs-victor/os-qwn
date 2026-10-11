@@ -1,0 +1,303 @@
+/* ═══════════════════════════════════════════════
+   header.css — Queens App Header
+   100% custom CSS, no Bootstrap dependency
+═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+/* ── Base ──────────────────────────────────── */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85); /* Rich glassmorphic black */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.app-header--scrolled {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  padding: 0;
+}
+
+.app-header--transparent {
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
+}
+
+/* ── Inner layout ──────────────────────────── */
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ── Logo ──────────────────────────────────── */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header-logo-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--color-primary);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--color-dark);
+  box-shadow: 0 4px 12px var(--color-primary-glow);
+}
+
+.header-brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.3px;
+}
+
+.header-brand-accent { color: var(--color-primary); }
+
+/* ── Nav ───────────────────────────────────── */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.header-nav-link {
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.18s;
+}
+
+.header-nav-link:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.header-nav-link--light { color: rgba(255, 255, 255, 0.88); }
+.header-nav-link--light:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+
+/* ── Auth section ──────────────────────────── */
+.header-auth { margin-left: auto; flex-shrink: 0; }
+
+/* ── Guest buttons ─────────────────────────── */
+.header-guest-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-login-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: all 0.18s;
+}
+
+.header-login-link:hover { background: rgba(255, 255, 255, 0.08); color: var(--color-text); }
+.header-login-link--light { color: #fff; background: var(--color-dark); border: 1px solid var(--color-border); }
+.header-login-link--light:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+.header-signup-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  background: var(--color-primary);
+  color: var(--color-dark);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px var(--color-primary-glow);
+}
+
+.header-signup-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px var(--color-primary-glow);
+}
+
+/* ── Profile trigger ───────────────────────── */
+.header-profile { position: relative; }
+
+.header-profile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 12px 6px 6px;
+  background: var(--color-primary-glow);
+  border: 1.5px solid rgba(255, 184, 0, 0.25);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.header-profile-trigger:hover {
+  background: rgba(255, 184, 0, 0.2);
+  border-color: rgba(255, 184, 0, 0.5);
+}
+
+.header-profile-trigger--light {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.header-profile-trigger--light:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.header-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+  flex-shrink: 0;
+}
+
+.header-profile-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-profile-trigger--light .header-profile-name { color: #fff; }
+
+.header-chevron {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  transition: transform 0.2s;
+}
+
+/* ── Dropdown ──────────────────────────────── */
+.header-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 240px;
+  background: var(--color-surface-light);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  z-index: 1050;
+  animation: dropdown-in 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes dropdown-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.header-dropdown-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+}
+
+.header-dropdown-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+  flex-shrink: 0;
+}
+
+.header-dropdown-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.header-dropdown-email {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+}
+
+.header-dropdown-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 4px 0;
+}
+
+.header-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+
+.header-dropdown-item:hover { background: rgba(255, 255, 255, 0.05); color: var(--color-text); }
+
+.header-dropdown-item i {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.header-dropdown-item--danger { color: var(--color-danger); }
+.header-dropdown-item--danger:hover { background: rgba(239, 68, 68, 0.1); color: var(--color-danger); }
+.header-dropdown-item--danger i { color: var(--color-danger); }
+
+/* ── Responsive ────────────────────────────── */
+@media (max-width: 768px) {
+  .header-nav { display: none; }
+  .header-inner { padding: 0 16px; gap: 12px; }
+  .header-profile-name { display: none; }
+  .header-chevron { display: none; }
+}

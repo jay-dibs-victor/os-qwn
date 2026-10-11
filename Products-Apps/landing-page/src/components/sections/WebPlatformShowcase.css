@@ -1,0 +1,614 @@
+/* ── Web Platform Showcase Styles ── */
+
+.wps-container {
+  padding: 80px 20px;
+  background: radial-gradient(circle at top, #0a0a0a 0%, #000000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wps-wrapper {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.wps-desktop-frame {
+  background: #050505;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.05);
+  aspect-ratio: 16/9;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Browser Header */
+.wps-browser-header {
+  height: 40px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wps-browser-dots {
+  display: flex;
+  gap: 8px;
+  width: 60px;
+}
+
+.wps-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.wps-dot.red { background: #ff5f56; }
+.wps-dot.yellow { background: #ffbd2e; }
+.wps-dot.green { background: #27c93f; }
+
+.wps-browser-url {
+  flex: 1;
+  margin: 0 20px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: monospace;
+}
+
+/* Body & Layout */
+.wps-body {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Sidebar (Wizard) */
+.wps-sidebar {
+  width: 380px;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  box-shadow: 20px 0 50px rgba(0,0,0,0.5);
+}
+
+.wps-sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wps-sidebar-title {
+  font-size: 24px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wps-sidebar-content {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Map Area */
+.wps-map-area {
+  flex: 1;
+  position: relative;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+}
+
+.wps-map-svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  object-fit: cover;
+}
+
+.wps-map-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Shared UI Components */
+.wps-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+.wps-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 184, 0, 0.2);
+}
+.wps-card.active {
+  background: rgba(255, 184, 0, 0.1);
+  border-color: #ffb800;
+}
+
+.wps-input-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+
+.wps-btn-primary {
+  width: 100%;
+  background: #ffb800;
+  color: #000;
+  font-weight: 800;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 24px;
+  box-shadow: 0 10px 20px rgba(255, 184, 0, 0.2);
+}
+
+/* Specific Slides Styling */
+
+/* Slide 1 & 2: Route & Fare */
+.wps-route-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.wps-route-dot.pickup { background: #34a853; }
+.wps-route-dot.dest { background: #ea4335; }
+
+.wps-fare-display {
+  font-size: 32px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  color: #ffb800;
+  margin: 16px 0;
+}
+
+/* Slide 3: Payment */
+.wps-payment-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+.wps-payment-option.active {
+  background: rgba(255,184,0,0.1);
+  border-color: #ffb800;
+}
+
+/* Slide 4: Scanning */
+.wps-scan-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.wps-radar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 184, 0, 0.2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.wps-radar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #ffb800;
+  border-color: #ffb800 transparent transparent transparent;
+  animation: spin 2s linear infinite;
+}
+
+/* Slide 5: Live Ride */
+.wps-driver-hud {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 184, 0, 0.2);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  z-index: 20;
+  min-width: 400px;
+}
+
+.wps-driver-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffb800, #ff8a00);
+}
+
+.wps-driver-info h4 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.wps-driver-info p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.wps-live-badge {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  padding: 12px 24px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 14px;
+  z-index: 20;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Indicator steps */
+.wps-steps-indicator {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+}
+.wps-step-dot {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.wps-step-dot.active {
+  background: #ffb800;
+}
+
+/* ── Extended Ride HUD (Step 6, 7, 8) ── */
+.wps-turn-instruction {
+  background: #000;
+  border: 1px solid rgba(255, 184, 0, 0.4);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.wps-turn-icon {
+  width: 48px;
+  height: 48px;
+  background: #ffb800;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+.wps-rating-stars {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.wps-star {
+  color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.wps-star:hover, .wps-star.filled {
+  color: #ffb800;
+}
+
+/* ── Flight Flow (Step 9, 10, 11) ── */
+.wps-flight-hero {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  z-index: 10;
+}
+.wps-flight-hero h1 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.wps-flight-hero span {
+  color: #ffb800;
+}
+
+.wps-flight-search-widget {
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 24px;
+  color: #fff;
+  margin-top: 24px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+.wps-flight-tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 2px solid rgba(255,255,255,0.05);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+}
+.wps-flight-tab {
+  font-weight: 800;
+  color: rgba(255,255,255,0.4);
+}
+.wps-flight-tab.active {
+  color: #fff;
+  position: relative;
+}
+.wps-flight-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ffb800;
+}
+
+.wps-flight-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.wps-flight-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+.wps-flight-input-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+.wps-flight-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.wps-flight-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+.wps-flight-line {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  position: relative;
+  margin: 0 16px;
+}
+.wps-flight-line::before {
+  content: '✈';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffb800;
+  font-size: 20px;
+}
+
+.wps-flight-ticket {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+.wps-ticket-header {
+  background: #ffb800;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+}
+.wps-ticket-header .wps-header-subtitle {
+  color: rgba(0,0,0,0.6);
+}
+.wps-ticket-body {
+  padding: 32px 24px;
+  border-bottom: 2px dashed rgba(255,255,255,0.1);
+}
+.wps-ticket-footer {
+  padding: 24px;
+  background: rgba(255,255,255,0.02);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wps-ticket-cutout {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #050505; /* frame background to blend in */
+  border-radius: 50%;
+  top: calc(100% - 100px);
+}
+.wps-ticket-cutout.left { left: -20px; border-right: 1px solid rgba(255,255,255,0.1); }
+.wps-ticket-cutout.right { right: -20px; border-left: 1px solid rgba(255,255,255,0.1); }
+
+/* ── Phase 3: En Route & Destination Flow ── */
+.wps-flight-tooltip {
+  position: absolute;
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 184, 0, 0.5);
+  border-radius: 12px;
+  padding: 12px 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  z-index: 50;
+  transform: translate(-50%, -100%);
+  margin-top: -16px;
+}
+
+.wps-hotel-card {
+  position: absolute;
+  background: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+  width: 320px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  color: #fff;
+  z-index: 40;
+}
+.wps-hotel-img {
+  width: 100%;
+  height: 140px;
+  background: #333;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  background-size: cover;
+  background-position: center;
+}
+
+.wps-itinerary-screen {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.wps-itinerary-checklist {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+}
+.wps-itinerary-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.wps-itinerary-item:last-child {
+  border-bottom: none;
+}
+.wps-itinerary-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+}
+.wps-itinerary-icon.done {
+  background: rgba(39, 201, 63, 0.1);
+  color: #27c93f;
+}
+
+/* ── Phase 4: Logistics Flow ── */
+.wps-signature-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.wps-signature-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: sign 2s ease forwards;
+}
+@keyframes sign {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.wps-progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.wps-progress-fill {
+  height: 100%;
+  background: #ffb800;
+  width: 0%;
+}

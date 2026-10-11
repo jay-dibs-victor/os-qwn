@@ -1,0 +1,73 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Expo
+.expo/
+.expo-shared/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.eslintcache
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Production
+build/
+dist/
+.next/
+out/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.log
+.cache/
+.parcel-cache/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Lock files (optional - uncomment if you want to commit lock files)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Temporary files
+*.tmp
+temp/
+.temp/
+
+# Backend specific
+backend/node_modules/
+backend/.env
+
+# Documentation & Agent files (for development only)
+*.md
+!README.md
+!CHANGELOG.md
+
+#Agents
+AGENTS.md
+BRAINSTORMING.md
+presentation.md
+user-app/IMPLEMENTATION.md
+driver-app/IMPLEMENTATION.md
+driver-app/CLAUDE.md
+driver-app/AGENTS.md
+iw/

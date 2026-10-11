@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  user-frontend:
+    build:
+      context: ../user-frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:12000/api/v1}
+    ports:
+      - "${USER_FRONTEND_PORT:-4002}:4002"
+    environment:
+      PORT: ${USER_FRONTEND_PORT:-4002}

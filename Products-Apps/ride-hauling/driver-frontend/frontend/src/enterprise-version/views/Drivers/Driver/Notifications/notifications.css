@@ -1,0 +1,52 @@
+.notifications-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.notification-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+}
+
+.notification-card:hover {
+    transform: translateX(5px);
+    background: #ffffff !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.custom-toggle {
+    width: 40px;
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.custom-toggle::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.custom-toggle.active {
+    background: #2ed573;
+}
+
+.custom-toggle.active::after {
+    transform: translateX(20px);
+}
+
+@media (max-width: 991px) {
+    .notifications-page-container {
+        padding: 20px;
+    }
+}
